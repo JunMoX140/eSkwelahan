@@ -11,6 +11,12 @@ Don't forget to
 after cloning the app.
 
 Dependencies: List the dependencies required to run the project.
-Tech Stack: This stack consists of PostgreSQL, Express, React and Node.js. Combining these technologies, one can build a full-stack web application with CRUD operations. Everyone must have heard about MERN Stack which is basically a JavaScript Stack for the deployment of full-stack web development and contains 4 technologies, namely: MongoDB, Express, React and Node.js. but PostgreSQL seems to be gaining more popularity because it offers wide support for NoSQL feature, transactional and standard compliant. It is written in C language.
-Features/Usage: Explain how to use the project and any specific instructions for its features.
+"react"
+"tailwind"
+"flowbite-react"
+"react-router-dom"
+"react-dom"
 
+Tech Stack: This stack consists of PostgreSQL, Express, React and Node.js. Combining these technologies, one can build a full-stack web application with CRUD operations. Everyone must have heard about MERN Stack which is basically a JavaScript Stack for the deployment of full-stack web development and contains 4 technologies, namely: MongoDB, Express, React and Node.js. but PostgreSQL seems to be gaining more popularity because it offers wide support for NoSQL feature, transactional and standard compliant. It is written in C language.
+
+Features/Usage: Explain how to use the project and any specific instructions for its features.
