@@ -11,5 +11,10 @@ Don't forget to
 after cloning the app.
 
 Dependencies: List the dependencies required to run the project.
+"react"
+"tailwind"
+"flowbite-react"
+"react-router-dom"
+"react-dom"
 Tech Stack: Technologies and Tools used
 Features/Usage: Explain how to use the project and any specific instructions for its features.
