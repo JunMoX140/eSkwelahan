@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from './App.jsx'
-import './index.css'
+import './assets/styles/index.css'
 import Errorpage from './pages/Errorpage.jsx';
 import Landing from './pages/Landing.jsx';
 import Login from './pages/Login.jsx';
@@ -11,13 +10,9 @@ import Register from './pages/Register.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Landing />,
     errorElement: <Errorpage/>,
     children: [
-      {
-        path: "/",
-        element: <Landing />,
-      },
       {
         path: "/login",
         element: <Login />,

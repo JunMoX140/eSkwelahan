@@ -1,14 +1,13 @@
 import { useState } from "react";
-import "./App.css";
+
 import React from "react";
 import { Outlet } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 export default App;
 
 function App() {
   return (
     <>
-    <h1>This is test</h1>
     <Outlet />
     
     </>
