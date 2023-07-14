@@ -1,6 +1,7 @@
 import React from 'react'
 import Eskwelahan from '../assets/images/eskwelahan.png'
 import RegisterLogo from '../assets/images/register_icon.png'
+import {MdAssignmentInd} from 'react-icons/md'
 
 function Register() {
   return (
@@ -9,12 +10,16 @@ function Register() {
         <nav className='bg-color1 h-16' >
           <div className='w-40 ml-4'>
             <img src={Eskwelahan} alt="" />
+           
           </div>
         </nav>
         <div className='w-1/3 mx-auto pt-5'>
           <div className='flex w-full justify-center'>
-            <img src={RegisterLogo} alt="" />
+          <MdAssignmentInd size={16*8} color={'#8F2D56'}/>
           </div>
+          <div className='flex w-full justify-center'>
+            <h2 className='text-2xl'><strong>REGISTER</strong></h2>
+            </div>
           <div className='flex w-full justify-center pt-5'>
           <form className="w-full max-w-lg">
             <div className="flex flex-wrap -mx-3 mb-2">
@@ -58,7 +63,7 @@ function Register() {
             </div>
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full px-3 text-center">
-                <button className='bg-color1 w-full text-lg p-2 rounded-lg mb-2'>Sign Up</button>
+                <button className='bg-color1 w-full text-lg p-2 rounded-lg mb-2 text-white'>Sign Up</button>
                 <a className='w-full text-blue-700 underline' href="/login">Already have and account?Sign in</a>
               </div>
             </div>
