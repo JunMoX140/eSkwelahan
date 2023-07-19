@@ -3,10 +3,14 @@ import { Outlet } from "react-router-dom";
 import Eskwelahan from "../assets/images/eskwelahan.png";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
+import ELogo from "../components/ELogo";
 
 function Landing() {
   return (
     <>
+      {/* <div>
+        <ELogo className=" h-28 w-auto bg-color5" />
+      </div> */}
       <div>
         <div
           className="h-screen w-full "
@@ -182,11 +186,9 @@ function Landing() {
         </div> */}
         </div>
       </div>
-
       {/* <div style={{width: '100%', height: '100vh', background: 'linear-gradient(0deg, #D81159 0%, #D81159 100%), linear-gradient(180deg, #218380 0%, rgba(33, 131, 128, 0) 40%)'}}>
   <img className="w-[764px] h-[335px]" src="https://via.placeholder.com/764x335" />
 </div> */}
-
       {/* <div style={{width: 1440, height: 1024, position: 'relative', background: 'white'}}>
   <div style={{width: 1440, height: 1024, left: 0, top: 1024, position: 'absolute', background: 'linear-gradient(0deg, #D81159 0%, #D81159 100%), linear-gradient(180deg, #218380 0%, rgba(33, 131, 128, 0) 40%)'}} />
   <div style={{width: 445, height: 445, left: 1066, top: -63, position: 'absolute', background: '#FFBC42', borderRadius: 9999}} />
