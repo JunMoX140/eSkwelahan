@@ -4,6 +4,7 @@ import Eskwelahan from "../assets/images/eskwelahan.png";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
 import ELogo from "../components/ELogo";
+import FAQ from "../components/FAQ";
 
 function Landing() {
   return (
@@ -206,6 +207,7 @@ function Landing() {
   <div style={{width: 298, height: 21, left: 181, top: 902, position: 'absolute', textAlign: 'right', color: '#FFBC42', fontSize: 20, fontFamily: 'Roboto', fontWeight: '300', textDecoration: 'underline', wordWrap: 'break-word'}}>Don't have an account? Sign Up</div>
   <div style={{width: 734, height: 132, left: 4, top: 382, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 48, fontFamily: 'Source Code Pro', fontWeight: '700', wordWrap: 'break-word'}}>FREE Class Management System<br/>for everyone!</div>
 </div> */}
+    <FAQ/>
     </>
   );
 }
