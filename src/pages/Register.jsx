@@ -2,6 +2,8 @@ import React from 'react'
 import Eskwelahan from '../assets/images/eskwelahan.png'
 import RegisterLogo from '../assets/images/register_icon.png'
 import {MdAssignmentInd} from 'react-icons/md'
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebookF } from 'react-icons/fa';
 
 function Register() {
   return (
@@ -66,6 +68,15 @@ function Register() {
                 <button className='bg-color1 w-full text-lg p-2 rounded-lg mb-2 text-white'>Sign Up</button>
                 <a className='w-full text-blue-700 underline' href="/login">Already have and account?Sign in</a>
               </div>
+            </div>
+
+            <div className="flex justify-center mt-2 mb-4">
+              <button className="bg-blue-500 hover:bg- text-white py-2 px-4 rounded-full mr-2">
+                <FcGoogle className="inline-block mr-1" /> Google
+              </button>
+              <button className="bg-blue-800 hover:bg-primary text-white py-2 px-4 rounded-full">
+                <FaFacebookF className="inline-block mr-1" /> Facebook
+              </button>
             </div>
             {/* <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
