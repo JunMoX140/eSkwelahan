@@ -8,13 +8,14 @@ import DefaultNavbar from "../components/DefaultNavbar";
 function Landing() {
   return (
     <>
-      <div className="container">
+    <div className="w-screen h-screen bg-color3">
+    <div className="container mx-auto">
         <div className="w-full h-screen bg-color3">
         <nav className="bg-color3">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
       <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-        <div className="hidden sm:ml-6 sm:block">
+        <div className="hidden sm:ml-3 sm:block">
           <div className="flex space-x-4">
             <a href="#" className="text-color1 bg-color3 rounded-md px-3 py-2 text-sm font-medium">ABOUT US</a>
             <a href="#" className="text-color1 bg-color3 rounded-md px-3 py-2 text-sm font-medium">FAQ's</a>
@@ -34,7 +35,8 @@ function Landing() {
     </div>
   </div>
 </nav>
-<div className="grid grid-cols-2 sm:grid-flow-row ">
+<div className="flex flex-1 bg-color1">
+<div className="grid grid-cols-2 gap-8">
   <div className="flex flex-wrap justify-end">
     <div className="w-3/4">
     <img className="h-300" src={Eskwelahan} alt="" />
@@ -47,14 +49,18 @@ function Landing() {
     </div>
   </div>
   <div className="flex items-center">
-    <div className="w-96 h-full ml-8">
+    <div className="w-96 h-full">
       <DefaultCarousel />
     </div>
   </div>
-
 </div>
+</div>
+
+
         </div>
       </div>
+    </div>
+      
     </>
   );
 }
