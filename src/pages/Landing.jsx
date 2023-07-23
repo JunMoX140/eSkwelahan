@@ -19,9 +19,11 @@ function Landing() {
           <div className="flex space-x-4">
             <a href="#" className="text-color1 bg-color3 rounded-md px-3 py-2 text-sm font-medium">ABOUT US</a>
             <a href="#" className="text-color1 bg-color3 rounded-md px-3 py-2 text-sm font-medium">FAQ's</a>
-            <a href="#" className="text-color3 bg-color1 rounded-md px-3  py-2 text-sm font-medium">
+
+            <Link to={"/login"}  className="text-color3 bg-color1 rounded-md px-3  py-2 text-sm font-medium">Login</Link>
+            {/* <a href="#" className="text-color3 bg-color1 rounded-md px-3  py-2 text-sm font-medium">
                 Login
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
@@ -35,7 +37,7 @@ function Landing() {
     </div>
   </div>
 </nav>
-<div className="flex flex-1 bg-color1">
+<div className="flex flex-1 bg-color3">
 <div className="grid grid-cols-2 gap-8">
   <div className="flex flex-wrap justify-end">
     <div className="w-3/4">
