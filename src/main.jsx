@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import TestPage from "./pages/TestPage";
 import Student from "./pages/Student";
+import FooterComp from "./components/FooterComp";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Landing />,
+      },
+      {
+        path: "/footer",
+        element: <FooterComp />,
       },
     ],
   },

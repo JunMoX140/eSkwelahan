@@ -3,6 +3,7 @@ import React from "react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import ELogo from "../components/ELogo";
 import FooterComp from "../components/FooterComp";
+import CallToAction from "../components/CallToAction";
 
 const TestPage = () => {
   return (
@@ -21,6 +22,7 @@ const TestPage = () => {
       <div className="w-10 h-10">
         <ELogo />
         <FooterComp />
+        <CallToAction />
       </div>
     </div>
   );

@@ -1,23 +1,21 @@
 "use client";
 
 import { Footer } from "flowbite-react";
-import { FooterBrand } from "flowbite-react/lib/esm/components/Footer/FooterBrand";
 import { Link } from "react-router-dom";
 
 export default function FooterComp() {
   return (
-    <Footer className=" w-screen py-8 bg-lm-bg dark:bg-dark-bg">
+    <Footer id="footer" className=" w-screen py-8 bg-lm-bg dark:bg-dark-bg">
       <div className=" container mx-auto w-11/12 max-w-screen-xl p-4 py-6 lg:py-8 bg-dark-bg dark:bg-lm-bg rounded-md">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <Link to={"/"} className="flex items-center">
+            <a href="#top" className="flex items-center">
               <img
                 src="src/assets/images/e-logo gradient.png"
                 className="h-12 mr-3"
                 alt="eSkwelahan Logo"
               />
-            </Link>
-
+            </a>
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-dark-text dark:text-lm-text ">
               eSkwelahan
             </span>
