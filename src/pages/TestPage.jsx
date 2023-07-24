@@ -2,6 +2,7 @@
 import React from "react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import ELogo from "../components/ELogo";
+import FooterComp from "../components/FooterComp";
 
 const TestPage = () => {
   return (
@@ -19,6 +20,7 @@ const TestPage = () => {
       <DarkModeToggle />
       <div className="w-10 h-10">
         <ELogo />
+        <FooterComp />
       </div>
     </div>
   );
