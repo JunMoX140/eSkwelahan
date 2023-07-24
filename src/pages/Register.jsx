@@ -1,17 +1,17 @@
-import React from 'react'
-import Eskwelahan from '../assets/images/eskwelahan.png'
+import React, { useState } from 'react'
+import Eskwelahan from '../assets/images/logo 1 gradient.png'
 import RegisterLogo from '../assets/images/register_icon.png'
 import {MdAssignmentInd} from 'react-icons/md'
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebookF } from 'react-icons/fa';
 
 function Register() {
+ 
   return (
     <>
-      <div>
-        <nav className='bg-color1 h-16' >
-          <div className='w-40 ml-4'>
-            <img src={Eskwelahan} alt="" />
-           
-          </div>
+      <div className='bg-color3'>
+        <nav>
+            <img className='ml-6 h-16' src={Eskwelahan} alt="" /> 
         </nav>
         <div className='w-1/3 mx-auto pt-5'>
           <div className='flex w-full justify-center'>
@@ -47,6 +47,18 @@ function Register() {
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                  Register as
+                </label>
+                {/* <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************"/> */}
+                <select  name="function" id="function" className='className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"'>
+                  <option value="0">Student</option>
+                  <option value="1">Teacher</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full px-3">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Password
                 </label>
                 <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************"/>
@@ -61,11 +73,21 @@ function Register() {
                 <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************"/>
               </div>
             </div>
+           
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full px-3 text-center">
                 <button className='bg-color1 w-full text-lg p-2 rounded-lg mb-2 text-white'>Sign Up</button>
                 <a className='w-full text-blue-700 underline' href="/login">Already have and account?Sign in</a>
               </div>
+            </div>
+
+            <div className="flex justify-center mt-2 mb-4">
+              <button className="bg-blue-500 hover:bg- text-white py-2 px-4 rounded-full mr-2">
+                <FcGoogle className="inline-block mr-1" /> Google
+              </button>
+              <button className="bg-blue-800 hover:bg-primary text-white py-2 px-4 rounded-full">
+                <FaFacebookF className="inline-block mr-1" /> Facebook
+              </button>
             </div>
             {/* <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
