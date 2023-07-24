@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Eskwelahan from '../assets/images/logo 1 gradient.png'
 import RegisterLogo from '../assets/images/register_icon.png'
 import {MdAssignmentInd} from 'react-icons/md'
@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebookF } from 'react-icons/fa';
 
 function Register() {
+ 
   return (
     <>
       <div className='bg-color3'>

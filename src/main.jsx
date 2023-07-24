@@ -7,6 +7,7 @@ import Landing from "./pages/Landing.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import TestPage from "./pages/TestPage";
+import Student from "./pages/Student";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+    errorElement: <Errorpage />,
+  },
+  {
+    path: "/student",
+    element: <Student />,
     errorElement: <Errorpage />,
   },
   {
