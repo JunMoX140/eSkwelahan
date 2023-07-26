@@ -1,18 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 const CallToAction = () => {
   return (
     <div className=" w-screen flex-cols-1 justify-between align-middle">
       <div className="mb-4">
         <Link to={"/login"}>
-          <button className=" text-dark-text bg-lm-primary mx-auto px-4 text-2xl uppercase rounded-md">
+          <Button className=" text-lm-text bg-lm-primary mx-auto px-4 text-2xl uppercase rounded-md">
             Login
-          </button>
+          </Button>
         </Link>
       </div>
       <div>
-        <Link to={"/register"}>
+        <Link
+          to={"/register"}
+          className=" text-lm-accent dark:text-dark-accent"
+        >
           <p>Don&apos;t have an account? Sign Up</p>
         </Link>
       </div>
