@@ -8,8 +8,10 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import TestPage from "./pages/TestPage";
 import Student from "./pages/Student";
-import FooterComp from "./components/FooterComp";
 import Teacher from "./pages/Teacher";
+import HomeTeacher from "./pages/HomeTeacher";
+import FooterComp from "./components/FooterComp";
+
 
 const router = createBrowserRouter([
   {
@@ -37,14 +39,20 @@ const router = createBrowserRouter([
     element: <Register />,
     errorElement: <Errorpage />,
   },
-  {
-    path: "/teacher",
-    element: <Teacher />,
-    errorElement: <Errorpage />,
-  },
+  
   {
     path: "/student",
     element: <Student />,
+    errorElement: <Errorpage />,
+  },
+  {
+    path: "/teacher",
+    element: <HomeTeacher />,
+    errorElement: <Errorpage />,
+  },
+  {
+    path: "/teacher/class",
+    element: <Teacher />,
     errorElement: <Errorpage />,
   },
   {
