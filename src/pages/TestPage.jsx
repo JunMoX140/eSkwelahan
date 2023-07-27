@@ -4,6 +4,8 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import ELogo from "../components/ELogo";
 import FooterComp from "../components/FooterComp";
 import CallToAction from "../components/CallToAction";
+import DefaultNavbar from "../components/DefaultNavbar";
+import SwitchViewButton from "../components/SwitchViewButton";
 
 const TestPage = () => {
   return (
@@ -21,9 +23,11 @@ const TestPage = () => {
       <DarkModeToggle />
       <div className="w-10 h-10">
         <ELogo />
-        <FooterComp />
-        <CallToAction />
       </div>
+      <FooterComp />
+      <CallToAction />
+      <DefaultNavbar />
+      <SwitchViewButton />
     </div>
   );
 };
