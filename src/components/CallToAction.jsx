@@ -7,7 +7,7 @@ const CallToAction = () => {
     <div className=" w-screen flex-cols-1 justify-between align-middle">
       <div className="mb-4">
         <Link to={"/login"}>
-          <Button className=" text-lm-text bg-lm-primary mx-auto px-4 text-2xl uppercase rounded-md">
+          <Button className=" text-lm-text bg-lm-primary hover:bg-lm-accent mx-auto px-4 text-2xl uppercase rounded-md">
             Login
           </Button>
         </Link>
@@ -15,7 +15,7 @@ const CallToAction = () => {
       <div>
         <Link
           to={"/register"}
-          className=" text-lm-accent dark:text-dark-accent"
+          className=" text-lm-accent  dark:text-dark-accent"
         >
           <p>Don&apos;t have an account? Sign Up</p>
         </Link>

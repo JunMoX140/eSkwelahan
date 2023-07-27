@@ -5,13 +5,15 @@ import { MdAssignmentInd } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import SwitchViewButton from "../components/SwitchViewButton";
+import ELogo from "../components/ELogo";
 
 function Register() {
   return (
     <>
       <div className="bg-lm-bg w-screen h-screen">
-        <nav>
-          <img className="ml-6 h-16" src={Eskwelahan} alt="" />
+        <nav className=" container w-16 h-16  ml-36 pt-2">
+          <ELogo className="" />
+          {/* <img className="ml-6 h-16" src={Eskwelahan} alt="" /> */}
         </nav>
         <div className="w-1/3 mx-auto pt-5">
           <div className="flex w-full justify-center">

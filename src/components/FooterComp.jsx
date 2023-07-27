@@ -30,6 +30,8 @@ export default function FooterComp() {
                   <a
                     href="https://github.com/cvin-f"
                     className="hover:underline flex items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src="src/assets/images/profile_Cris.jpg"
@@ -43,6 +45,8 @@ export default function FooterComp() {
                   <a
                     href="https://github.com/JunMoX140"
                     className="hover:underline flex items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src="src/assets/images/profile_Dan.jpg"
@@ -56,6 +60,8 @@ export default function FooterComp() {
                   <a
                     href="https://github.com/PaulBlanco29"
                     className="hover:underline flex items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src="src/assets/images/profile_joevy.png"
@@ -69,6 +75,8 @@ export default function FooterComp() {
                   <a
                     href="https://github.com/takecaremf"
                     className="hover:underline flex items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src="src/assets/images/profile_mark.jpg"
