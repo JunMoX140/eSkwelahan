@@ -1,29 +1,18 @@
-import React from 'react'
+import React from "react";
 import { Carousel } from "flowbite-react";
 
 function DefaultCarousel() {
   return (
     <>
-        <Carousel>
-                  <img
-                    alt="..."
-                    src="https://picsum.photos/id/237/200/300"
-                  />
-                  <img
-                    alt="..."
-                    src="https://picsum.photos/seed/picsum/200/300"
-                  />
-                  <img
-                    alt="..."
-                    src="https://picsum.photos/200/300?grayscale"
-                  />
-                  <img
-                    alt="..."
-                    src="https://picsum.photos/200/300/?blur=2"
-                  />
-                </Carousel>
+      <Carousel className=" bg-lm-accent rounded-lg drop-shadow-lg">
+        <img alt="..." src="src/assets/images/img1.jpg" />
+        <img alt="..." src="src/assets/images/img2.jpg" />
+        <img alt="..." src="src/assets/images/img3.jpg" />
+        <img alt="..." src="src/assets/images/img4.jpg" />
+        <img alt="..." src="src/assets/images/img5.jpg" />
+      </Carousel>
     </>
-  )
+  );
 }
 
-export default DefaultCarousel
+export default DefaultCarousel;
