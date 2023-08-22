@@ -7,7 +7,7 @@ function QuizCard() {
     <div className='flex'>
     <div className='my-4'>
       <Card className='bg-lm-bg'>
-      <fieldset className="flex max-w-md flex-col gap-4" id="radio">
+      <fieldset className="flex max-w-md flex-col gap-4 border-gray-50" id="radio">
       <legend className="mb-6">
         <textarea name="" id="" cols="100" rows="5" placeholder='Question'></textarea>
       </legend>

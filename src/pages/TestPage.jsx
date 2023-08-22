@@ -6,6 +6,7 @@ import FooterComp from "../components/FooterComp";
 import CallToAction from "../components/CallToAction";
 import DefaultNavbar from "../components/DefaultNavbar";
 import SwitchViewButton from "../components/SwitchViewButton";
+import ModalTest from "../components/ModalTest";
 
 const TestPage = () => {
   return (
@@ -22,12 +23,9 @@ const TestPage = () => {
       </p>
       <DarkModeToggle />
       <div className="w-10 h-10">
-        <ELogo />
+        <ModalTest />
       </div>
-      <FooterComp />
-      <CallToAction />
-      <DefaultNavbar />
-      <SwitchViewButton />
+      
     </div>
   );
 };

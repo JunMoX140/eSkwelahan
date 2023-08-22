@@ -1,10 +1,14 @@
 import React from 'react'
 import { Sidebar } from 'flowbite-react';
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
-import { MdQuiz } from 'react-icons/md';
-import { Accordion } from 'flowbite-react';
+import { MdQuiz, MdLocalActivity, MdStickyNote2} from 'react-icons/md';
+import { Accordion, Button } from 'flowbite-react';
 
 function StudentSidebar() {
+
+   const quizes=[{title:'Quiz 1',link:''}, {title:'Quiz 2',link:''}, {title:'Quiz 3',link:''}];
+   const activities=[{title:'Activity 1',link:''}, {title:'Activity 2',link:''}, {title:'Activity 3',link:''}];
+   const exercises=[{title:'Exercise 1',link:''}, {title:'Exercise 2',link:''}, {title:'Exercise 3',link:''}];
   return (
     <div>
        
@@ -46,8 +50,67 @@ function StudentSidebar() {
          </li>
          <li>
             <a href="#" className="flex items-center p-2 text-lm-primary rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <MdQuiz />
-               <span className="flex-1 ml-3 whitespace-nowrap">Quiz</span>
+            
+               
+
+               <div className='w-full'>
+               <Accordion collapseAll>
+                  <Accordion.Panel className='bg-gray-400'>
+                  <Accordion.Title style={{height:'16px'}}>
+                     <div className='flex'>
+                     <MdQuiz /><span className="ml-3">Quiz</span>
+                     </div>
+                     
+                  </Accordion.Title>
+                  <Accordion.Content>
+                     <Button size="xs" className='h-8 w-full'> Add Quiz </Button>
+                  <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
+                        {quizes.map(({title, link})=>(
+                           <li>
+                              <a href={link} key={title}  className="text-cyan-600 hover:underline dark:text-cyan-500" >{title}</a>
+                           </li>
+                        ))}
+                  </ul>
+                  </Accordion.Content>
+                  </Accordion.Panel>
+                  <Accordion.Panel>
+                  <Accordion.Title style={{height:'16px'}}>
+                     <div className='flex'>
+                     <MdLocalActivity /> <span className="ml-3">Activities</span>
+                     </div>
+                  </Accordion.Title>
+                  <Accordion.Content>
+                  <Button size="xs" className='h-8 w-full'> Add Activity </Button>
+                  <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
+                        {activities.map(({title, link})=>(
+                           <li>
+                              <a href={link} key={title}  className="text-cyan-600 hover:underline dark:text-cyan-500" >{title}</a>
+                           </li>
+                        ))}
+                  </ul>
+                  </Accordion.Content>
+                  </Accordion.Panel>
+                  <Accordion.Panel>
+                  <Accordion.Title style={{height:'16px'}}>
+                  <div className='flex'>
+                     <MdStickyNote2 /> <span className="ml-3">Exercises</span>
+                     </div>
+                  </Accordion.Title>
+                  <Accordion.Content>
+                  <Button size="xs" className='h-8 w-full'> Add Exercise </Button>
+                  <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
+                        {exercises.map(({title, link})=>(
+                           <li>
+                              <a href={link} key={title}  className="text-cyan-600 hover:underline dark:text-cyan-500" >{title}</a>
+                           </li>
+                        ))}
+                  </ul>
+                  </Accordion.Content>
+                  </Accordion.Panel>
+               </Accordion>
+               </div>
+               
+               
             </a>
          </li>
          
