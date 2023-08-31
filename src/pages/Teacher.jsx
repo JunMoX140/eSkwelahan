@@ -1,7 +1,8 @@
 import React from 'react'
 import DefaultNavbar from "../components/DefaultNavbar";
 import Sidebar from "../components/TeacherSidebar";
-import TeacherQuiz from './TeacherQuiz';
+import DashboardTeacher from './DashboardTeacher';
+
 
 function Teacher() {
   return (
@@ -15,7 +16,7 @@ function Teacher() {
           <Sidebar />
           </div>
           <div className='w-4/6 p-3'>
-          <TeacherQuiz />
+          <DashboardTeacher />
           </div>
           
         </div>
