@@ -28,7 +28,7 @@ function DefaultNavbar() {
             <li>
               <IoIosNotifications className="h-8 w-6" />
             </li>
-            <button className="bg-lm-primary text-lm-text md:ml-2 p-2 hover:bg-lm-accent text-sm rounded-lg">
+            <button className="bg-lm-primary text-white md:ml-2 p-2 hover:bg-lm-accent text-sm rounded-lg">
               Sign out
             </button>
           </ul>
