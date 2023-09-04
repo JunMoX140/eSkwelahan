@@ -7,8 +7,6 @@ function ModalAddQuiz(props) {
 
   const [openModal, setOpenModal] = useState();
   const stat = { openModal, setOpenModal };
-
-  ()=>stat.setOpenModal(props.openModal);
   
   return(
     <>
