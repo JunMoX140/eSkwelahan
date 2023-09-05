@@ -10,7 +10,6 @@ function Teacher() {
         <div className='w-full'>
           <DefaultNavbar/>
         </div>
-          
         <div className='flex'>
           <div>
           <Sidebar />
@@ -18,13 +17,8 @@ function Teacher() {
           <div className='w-4/6 p-3'>
           <DashboardTeacher />
           </div>
-          
         </div>
       </>
-        
-        
-
-    
   )
 }
 

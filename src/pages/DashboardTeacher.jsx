@@ -6,7 +6,24 @@ function DashboardTeacher() {
 
   return (
     <>
-        <div className='grid grid-cols-3'>
+        {/* <div className='grid grid-cols-3'>
+            <div className='m-2'>
+                    <Card
+                        className="max-w-sm"
+                        href="#"
+                        >
+                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <p>
+                                Quiz
+                            </p>
+                        </h5>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            <p>
+                                5
+                            </p>
+                        </p>
+                    </Card>
+                </div>
                 <div className='m-2 '>
                     <Card
                         className="max-w-sm"
@@ -24,23 +41,7 @@ function DashboardTeacher() {
                         </p>
                     </Card>
                 </div>
-                <div className='m-2'>
-                    <Card
-                        className="max-w-sm"
-                        href="#"
-                        >
-                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <p>
-                                Quiz
-                            </p>
-                        </h5>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            <p>
-                                5
-                            </p>
-                        </p>
-                    </Card>
-                </div>
+                
                 <div className='m-2'>
                     <Card
                         className="max-w-sm"
@@ -58,7 +59,7 @@ function DashboardTeacher() {
                         </p>
                     </Card>
                 </div>
-        </div>
+        </div> */}
         <div>
                 <Table striped >
                 <Table.Head>

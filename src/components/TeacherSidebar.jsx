@@ -12,7 +12,7 @@ function StudentSidebar() {
    const activities=[{title:'Activity 1',link:''}, {title:'Activity 2',link:''}, {title:'Activity 3',link:''}];
    const exercises=[{title:'Exercise 1',link:''}, {title:'Exercise 2',link:''}, {title:'Exercise 3',link:''}];
    
-   const [openModal, setOpenModal] = useState("");
+   const [openModal, setOpenModal] = useState(false);
   return (
     <div>
          
@@ -40,7 +40,7 @@ function StudentSidebar() {
                               </div>
                            </Accordion.Title>
                            <Accordion.Content>
-                              <Button size="xs" className='h-8 w-full' onClick={() => setOpenModal('default')}> Add Quiz </Button>
+                              <Button size="xs" className='h-8 w-full' onClick={() => setOpenModal(true)}> Add Quiz </Button>
                                  <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
                                        {quizes.map(({title, link})=>(
                                           <li>
@@ -48,40 +48,6 @@ function StudentSidebar() {
                                           </li>
                                        ))}
                                  </ul>
-                           </Accordion.Content>
-                           </Accordion.Panel>
-                           <Accordion.Panel>
-                           <Accordion.Title style={{height:'16px'}}>
-                              <div className='flex'>
-                                 <MdLocalActivity /> <span className="ml-3">Activities</span>
-                              </div>
-                           </Accordion.Title>
-                           <Accordion.Content>
-                              <Button size="xs" className='h-8 w-full'> Add Activity </Button>
-                              <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
-                                    {activities.map(({title, link})=>(
-                                       <li>
-                                          <a href={link} key={title}  className="text-cyan-600 hover:underline dark:text-cyan-500" >{title}</a>
-                                       </li>
-                                    ))}
-                              </ul>
-                           </Accordion.Content>
-                           </Accordion.Panel>
-                           <Accordion.Panel>
-                           <Accordion.Title style={{height:'16px'}}>
-                           <div className='flex'>
-                              <MdStickyNote2 /> <span className="ml-3">Exercises</span>
-                              </div>
-                           </Accordion.Title>
-                           <Accordion.Content>
-                              <Button size="xs" className='h-8 w-full'> Add Exercise </Button>
-                              <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
-                                    {exercises.map(({title, link})=>(
-                                       <li>
-                                          <a href={link} key={title}  className="text-cyan-600 hover:underline dark:text-cyan-500" >{title}</a>
-                                       </li>
-                                    ))}
-                              </ul>
                            </Accordion.Content>
                            </Accordion.Panel>
                         </Accordion>
@@ -92,7 +58,7 @@ function StudentSidebar() {
             </div>
          </aside>
          <div>
-            <ModalAddQuiz openModal={openModal}/>
+            <ModalAddQuiz openModal={openModal} setOpenModal={setOpenModal}/>
          </div>
     </div>
   )
