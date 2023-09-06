@@ -9,8 +9,8 @@ import { useState } from 'react';
 function StudentSidebar() {
 
    const quizes=[{title:'Quiz 1',link:''}, {title:'Quiz 2',link:''}, {title:'Quiz 3',link:''}];
-   const activities=[{title:'Activity 1',link:''}, {title:'Activity 2',link:''}, {title:'Activity 3',link:''}];
-   const exercises=[{title:'Exercise 1',link:''}, {title:'Exercise 2',link:''}, {title:'Exercise 3',link:''}];
+   // const activities=[{title:'Activity 1',link:''}, {title:'Activity 2',link:''}, {title:'Activity 3',link:''}];
+   // const exercises=[{title:'Exercise 1',link:''}, {title:'Exercise 2',link:''}, {title:'Exercise 3',link:''}];
    
    const [openModal, setOpenModal] = useState(false);
   return (
