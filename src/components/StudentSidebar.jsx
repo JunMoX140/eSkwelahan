@@ -5,7 +5,7 @@ import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, Hi
 function StudentSidebar() {
   return (
     <div>
-        <Sidebar aria-label="Default sidebar example" >
+        {/* <Sidebar aria-label="Default sidebar example" >
       <Sidebar.Items >
         <Sidebar.ItemGroup>
           <Sidebar.Item href="#" icon={HiChartPie}>
@@ -66,7 +66,7 @@ function StudentSidebar() {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
-    </Sidebar>
+    </Sidebar> */}
     </div>
   )
 }

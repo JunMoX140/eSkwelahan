@@ -182,29 +182,6 @@ export default function TeacherSubjects() {
         
       </Table.Body>
     </Table>
-
-    
-      <div>
-      <h2>Todos</h2>
-      {todos.map((todo) => (
-        <li key={todo.id} style={{ padding: "2px 0" }}>
-          <input
-            type="checkbox"
-            defaultChecked={todo.isCompleted}
-            onChange={onIsCompletedChange(todo.id)}
-          />
-          {todo.task}{" "}
-          <button type="button" onClick={onDeleteTodoClick(todo.id)}>
-            x
-          </button>
-        </li>
-      ))}
-      <br />
-      <input type="text" ref={taskRef} name="task" />
-      <button type="button" onClick={onAddTodoClick}>
-        Add Todo
-      </button>
-      </div>
     </div>
     
   )

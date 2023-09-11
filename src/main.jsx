@@ -9,8 +9,11 @@ import Register from "./pages/Register.jsx";
 import TestPage from "./pages/TestPage";
 import Student from "./pages/Student";
 import Teacher from "./pages/Teacher";
-import HomeTeacher from "./pages/HomeTeacher";
+import  { HomeTeacher } from "./pages/HomeTeacher.jsx";
 import FooterComp from "./components/FooterComp";
+import TeacherQuiz from "./pages/TeacherQuiz.jsx";
+import DashboardTeacher from "./pages/DashboardTeacher";
+
 
 
 const router = createBrowserRouter([
@@ -49,11 +52,25 @@ const router = createBrowserRouter([
     path: "/teacher",
     element: <HomeTeacher />,
     errorElement: <Errorpage />,
+   
   },
   {
     path: "/teacher/class",
-    element: <Teacher />,
-    errorElement: <Errorpage />,
+    element: ( <Teacher />),
+    errorElement: <Errorpage/>,
+    children:[
+      {
+        path: "/teacher/class/",
+        element: <DashboardTeacher />,
+        errorElement: <Errorpage />,
+      },
+      {
+        path: "/teacher/class/quiz",
+        element: <TeacherQuiz />,
+        errorElement: <Errorpage />,
+      },
+
+    ]
   },
   {
     path: "/test",

@@ -2,6 +2,7 @@ import React from 'react'
 import DefaultNavbar from "../components/DefaultNavbar";
 import Sidebar from "../components/TeacherSidebar";
 import DashboardTeacher from './DashboardTeacher';
+import { Outlet } from 'react-router-dom';
 
 
 function Teacher() {
@@ -15,7 +16,7 @@ function Teacher() {
           <Sidebar />
           </div>
           <div className='w-4/6 p-3'>
-          <DashboardTeacher />
+            <Outlet />
           </div>
         </div>
       </>

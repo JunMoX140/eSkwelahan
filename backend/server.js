@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import todosRouter from "./routes/todo.js";
-import teacherSubsRouter from "./routes/teacherSubject.js"
+import teacherRouter from "./routes/teacher.js"
 
 const app = express();
 
@@ -22,9 +22,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/api/todos", todosRouter);
-app.use("/api/teacher",teacherSubsRouter);
-
-
+app.use("/api/teacher",teacherRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello world");
