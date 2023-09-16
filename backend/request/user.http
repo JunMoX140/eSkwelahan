@@ -1,0 +1,24 @@
+
+GET http://localhost:8081/api/user/verify
+
+
+###
+
+POST http://localhost:8081/api/user/sign-out
+
+###
+
+POST http://localhost:8081/api/user/sign-up
+Content-Type: application/json
+
+{
+    "firstname" : "Cris Vincent",
+    "lastname" : "Ferrer",
+    "middlename" : "Ga",
+    "suffix" : "",
+    "email" : "test@gmail.com",
+    "password" : "testpass",
+    "userType" : 1
+}
+
+###

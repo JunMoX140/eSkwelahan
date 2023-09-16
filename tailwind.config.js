@@ -11,6 +11,7 @@ export default {
         color1: "#8F2D56",
         color2: "#D81159",
         color3: "#F3ECEF",
+        color4: "#c43b71",
         
         lm: {
           text: "#0d0808",

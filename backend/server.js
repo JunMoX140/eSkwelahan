@@ -1,8 +1,10 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import todosRouter from "./routes/todo.js";
 import teacherRouter from "./routes/teacher.js"
+import userRouter from "./routes/user.js";
 
 const app = express();
 
@@ -20,10 +22,8 @@ app.use(
 );
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cookieParser())
 
 app.use("/api/todos", todosRouter);
 app.use("/api/teacher",teacherRouter);
-
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+app.use("/api/user", userRouter);

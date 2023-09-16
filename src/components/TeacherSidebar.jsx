@@ -38,7 +38,7 @@ function StudentSidebar() {
                               </div>
                            </Accordion.Title>
                            <Accordion.Content>
-                              <Button size="xs" className='h-8 w-full'> 
+                              <Button size="xs" className='h-8 w-full bg-color1 hover:bg-color4'> 
                                  <Link
                                     to={`/teacher/class/quiz`}
                                     > ADD QUIZ

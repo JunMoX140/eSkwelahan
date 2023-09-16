@@ -13,6 +13,7 @@ import  { HomeTeacher } from "./pages/HomeTeacher.jsx";
 import FooterComp from "./components/FooterComp";
 import TeacherQuiz from "./pages/TeacherQuiz.jsx";
 import DashboardTeacher from "./pages/DashboardTeacher";
+import LoginPage from "./pages/LoginPage";
 
 
 
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    errorElement: <Errorpage />,
+  },
+  {
+    path: "/logintest",
+    element: <LoginPage />,
     errorElement: <Errorpage />,
   },
   {

@@ -6,17 +6,21 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dbmate": "dbmate"
+    "dbmate": "dbmate",
+    "dev": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "camelcase-keys": "^9.0.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dbmate": "^2.6.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "postgres": "^3.3.5",
     "zod": "^3.22.2"
