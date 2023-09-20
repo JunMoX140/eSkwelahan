@@ -1,28 +1,24 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
+import { environment } from "../environment.js";
 
-const { JWT_SECRET }= process.env;
+const { JWT_SECRET } = environment;
 
-export default function tokenValidator(token){
-    const decoded = jwt.verify(token, JWT_SECRET);
-    try {
-        if(decoded)
-        {
-            return {
-                isValid: true,
-                decoded,
-            }
-        }else{
-            return { isValid: false, message: "Token is required"};
-        }
-       
-    } catch (error) {
-        if(error.name==='TokenExpiredError'){
-            return { isValid: false, message: "Token has expired"};
-        }
-        if(error.name==='JsonWebTokenError'){
-            return { isValid: false, message: "Token is required"};
-        }
-
-        throw error;
+export default function tokenValidator(token) {
+  try {
+    return {
+      isValid: true,
+      ...jwt.verify(token, JWT_SECRET),
+    };
+  } catch (e) {
+    // JWT Errors: https://github.com/auth0/node-jsonwebtoken#errors--codes
+    if (e.name === "TokenExpiredError") {
+      return { isValid: false, error: "Token has already expired" };
     }
+
+    if (e.name === "JsonWebTokenError") {
+      return { isValid: false, error: "Token is required" };
+    }
+
+    throw e;
+  }
 }

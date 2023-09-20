@@ -20,7 +20,7 @@ function TeacherQuiz() {
 
   const choiceRef=useRef();
 
-  const onAddQuiz=()=>{
+   function onAddQuiz(){
     console.log(answer.toString());
   }
 
@@ -78,7 +78,7 @@ function TeacherQuiz() {
               </div>
               <div className='mt-3'>
               <Label>Answer</Label>
-              <fieldset onChange={setAsnwer()}
+              <fieldset onChange={()=>setAsnwer()}
                   className="flex mt-3 max-w-md flex-col gap-4"
                   id="radio"
                 >

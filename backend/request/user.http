@@ -1,24 +1,49 @@
 
-GET http://localhost:8081/api/user/verify
+GET http://localhost:8081/api/auth/verify
 
 
 ###
 
-POST http://localhost:8081/api/user/sign-out
+POST http://localhost:8081/api/auth/sign-out
+
 
 ###
 
-POST http://localhost:8081/api/user/sign-up
+POST http://localhost:8081/api/auth/sign-up
 Content-Type: application/json
 
 {
-    "firstname" : "Cris Vincent",
-    "lastname" : "Ferrer",
-    "middlename" : "Ga",
-    "suffix" : "",
+    "firstName" : "Cris Vincent",
+    "lastName" : "Ferrer",
+    "middleName" : "Ga",
+    "suffix" : "xs",
     "email" : "test@gmail.com",
     "password" : "testpass",
     "userType" : 1
 }
 
 ###
+
+POST http://localhost:8081/api/auth/sign-in
+Content-Type: application/json
+
+{
+    "email" : "test1@gmail.com",
+    "password" : "testpass"
+}
+
+
+###
+
+POST http://localhost:8081/api/teacher
+Content-Type: application/json
+
+{
+        "teacher" : 1,
+        "subjectName" : "test",
+        "description" : "test",
+        "subjectCode" : "test",
+        "schedule" : "test"
+}
+###
+GET http://localhost:8081/api/teacher/1

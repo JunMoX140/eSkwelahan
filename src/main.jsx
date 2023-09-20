@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     errorElement: <Errorpage />,
   },
   {
-    path: "/register",
+    path: "/sign-up",
     element: <Register />,
     errorElement: <Errorpage />,
   },
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/teacher/class",
-    element: ( <Teacher />),
+    element:  <Teacher />,
     errorElement: <Errorpage/>,
     children:[
       {

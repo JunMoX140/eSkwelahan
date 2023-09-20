@@ -1,11 +1,23 @@
 import React from "react";
 import { useState } from "react";
-import { Navbar, Dropdown } from "flowbite-react";
+import { Navbar, Dropdown, Button } from "flowbite-react";
 import Logo from "../assets/images/logo 1 gradient.png";
 import { Avatar } from "flowbite-react";
 import { IoIosMenu, IoIosNotifications } from "react-icons/io";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function DefaultNavbar() {
+
+  const navigate=useNavigate();
+
+  async function onSignOut(){
+    await axios({
+      method:"POST",
+      url: "/api/auth/sign-out"
+    });
+    navigate("/");
+  }
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -21,16 +33,14 @@ function DefaultNavbar() {
             <IoIosMenu name={open ? "close" : "menu"} />
           </div>
           <ul
-            className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-color3 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 ${
-              open ? "top-20" : "top-[-490px]"
-            }`}
-          >
-            <li>
-              <IoIosNotifications className="h-8 w-6" />
-            </li>
-            <button className="bg-lm-primary text-white md:ml-2 p-2 hover:bg-lm-accent text-sm rounded-lg">
-              Sign out
-            </button>
+              className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-color3 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 ${
+                open ? "top-20" : "top-[-490px]"
+              }`}
+            >
+              <li>
+                <IoIosNotifications className="h-8 w-6" />
+              </li>
+              <Button size="xs" onClick={onSignOut}>Sign Out</Button>
           </ul>
         </div>
       </div>

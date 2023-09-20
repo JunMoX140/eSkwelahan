@@ -10,7 +10,7 @@ const TodoSchema = z.object({
   description : z.string(),
   subjectCode : z.string(),
   schedule: z.string(),
-  teacher: z.number(),
+  teacher: z.number()
 });
 
 teacherRouter.get("/:id", async (req, res) => {
@@ -29,7 +29,7 @@ teacherRouter.get("/:id", async (req, res) => {
   teacherRouter.post("/", async (req, res) => {
     const newClass = req.body;
     const parsedResult = TodoSchema.safeParse(newClass);
-  
+
     if (!parsedResult.success) {
       return res.status(400).send(
         parsedResult.error.errors.map((err) => ({

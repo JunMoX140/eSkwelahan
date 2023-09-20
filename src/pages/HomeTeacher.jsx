@@ -2,13 +2,20 @@ import React from 'react'
 import DefaultNavbar from '../components/DefaultNavbar'
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, TextInput, Table, Label } from 'flowbite-react';
-import { Form, redirect } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
+import useIsAuthenticated from '../hooks/useIsAuthenticated';
+
 
 
 export const loader = async () => {
-  const response = await fetch("/api/teacher/1");
-  const teacherClass = await response.json();
-  return { teacherClass };
+  try{
+    const {id}= JSON.parse(localStorage.getItem("authenticatedUser"))
+    const response = await fetch(`api/teacher/${id}`);
+    const teacherClass = await response.json();
+    return { teacherClass };
+  }catch(err){
+    return {};
+  }
 };
 
 // export const action = async ({ request })=> {
@@ -32,6 +39,7 @@ export const loader = async () => {
 // }
 
 export function HomeTeacher() {
+  useIsAuthenticated();
   const [teacherClass, setTeacherClass] = useState([]);
   const [openModal, setOpenModal]= useState();
 
@@ -42,23 +50,24 @@ export function HomeTeacher() {
   const teacher= useRef();
 
   async function onSubmit(){
-     await fetch("/api/teacher",{
-      method: "POST",
-      headers: {
-        "Content-type" : "application/json",
-      },
+    //  await fetch("/api/teacher",{
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type" : "application/json",
+    //   },
   
-      body: JSON.stringify({
-        teacher : Number(teacher.current.value),
-        subjectName : subjectName.current.value,
-        description : description.current.value,
-        subjectCode : subjectCode.current.value,
-        schedule : schedule.current.value,
+    //   body: JSON.stringify({
+    //     teacher : Number(teacher.current.value),
+    //     subjectName : subjectName.current.value,
+    //     description : description.current.value,
+    //     subjectCode : subjectCode.current.value,
+    //     schedule : schedule.current.value,
         
-      }),
-    })
-  
-    return redirect("/teacher");
+    //   }),
+    // })
+    // setOpenModal(false);
+    // return redirect("/");
+
   }
 
   useEffect(() => {
@@ -117,9 +126,7 @@ export function HomeTeacher() {
                 className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                 href="/teacher/class"
               >
-                <p>
-                View Subject
-                </p>
+                View Class
               </a>
             </Table.Cell>
             
