@@ -10,7 +10,7 @@ function ModalAddQuiz({openModal, setOpenModal}) {
       {/* <Button onClick={() => props.setOpenModal('default')}>Toggle modal</Button> */}
       <Modal show={openModal == true} onClose={() => setOpenModal(false)}>
       {/* <Modal show={props.openModal==="default"} onClose={props.openModal==""}> */}
-        <Modal.Header>Add Quiz</Modal.Header>
+        <Modal.Header>Add Question Details</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
           <TextInput

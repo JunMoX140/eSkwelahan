@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-function StudentSidebar() {
+function StudentSidebar(props) {
 
    const quizes=[{title:'Quiz 1',link:''}, {title:'Quiz 2',link:''}, {title:'Quiz 3',link:''}];
    
@@ -38,7 +38,7 @@ function StudentSidebar() {
                               </div>
                            </Accordion.Title>
                            <Accordion.Content>
-                              <Button size="xs" className='h-8 w-full bg-color1 hover:bg-color4'> 
+                              <Button size="xs" className='h-8 w-full'> 
                                  <Link
                                     to={`/teacher/class/quiz`}
                                     > ADD QUIZ

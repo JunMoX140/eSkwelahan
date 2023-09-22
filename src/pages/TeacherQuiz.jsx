@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useState } from 'react';
 import QuizCard from '../components/QuizCard'
 import { GrAdd } from 'react-icons/gr'
-import { Button, Radio, Label, Modal, TextInput, Textarea } from 'flowbite-react';
+import { Button, Radio, Label, Modal, TextInput, Textarea, Select, Card} from 'flowbite-react';
 import { HiPlus } from 'react-icons/hi';
 
 function TeacherQuiz() {
@@ -22,6 +22,7 @@ function TeacherQuiz() {
 
    function onAddQuiz(){
     console.log(answer.toString());
+    setOpenModal(false);
   }
 
  const onAddChoices=()=>{
@@ -32,12 +33,16 @@ function TeacherQuiz() {
   
   return (
     <div >
+      <div className='w-full mb-2'>
+        <Card>
+          <TextInput />
+        </Card>
+      </div>
       <div className='flex w-full'>
-        <select className='w-4/5 text-sm rounded-lg' name="" id="">
-          <option value="0">--Select Quiz Type--</option>
+        <Select className='w-4/5 text-sm rounded-lg' name="" id="">
           <option value="1">Multiple Choice</option>
           <option value="2">Essay</option>
-        </select>
+        </Select>
         <button onClick={()=> setOpenModal(true)} className='w-1/5 p-2 ml-3 bg-lm-bg rounded'><GrAdd className='mx-auto'/></button>
       </div>
        <div>
@@ -46,7 +51,7 @@ function TeacherQuiz() {
 
       <div>
           <Modal show={openModal == true} onClose={() => setOpenModal(false)}>
-            <Modal.Header>Add Quiz</Modal.Header>
+            <Modal.Header>Add Quiz Details</Modal.Header>
             <Modal.Body>
               <div>
               <Label htmlFor='question'>Question</Label>
