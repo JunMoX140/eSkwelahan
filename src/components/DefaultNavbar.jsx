@@ -40,7 +40,7 @@ function DefaultNavbar() {
               <li>
                 <IoIosNotifications className="h-8 w-6" />
               </li>
-              <Button size="xs" onClick={onSignOut}>Sign Out</Button>
+              <Button default size="xs" onClick={onSignOut}>Sign Out</Button>
           </ul>
         </div>
       </div>
