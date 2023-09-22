@@ -2,10 +2,8 @@ import React from 'react'
 import DefaultNavbar from '../components/DefaultNavbar'
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, TextInput, Table, Label } from 'flowbite-react';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, redirect } from 'react-router-dom';
 import useIsAuthenticated from '../hooks/useIsAuthenticated';
-
-
 
 export const loader = async () => {
   try{
@@ -47,27 +45,23 @@ export function HomeTeacher() {
   const subjectCode= useRef();
   const description= useRef();
   const schedule= useRef();
-  const teacher= useRef();
+  const teachedId= JSON.parse(localStorage.getItem("authenticatedUser")).id; 
 
   async function onSubmit(){
-    //  await fetch("/api/teacher",{
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type" : "application/json",
-    //   },
-  
-    //   body: JSON.stringify({
-    //     teacher : Number(teacher.current.value),
-    //     subjectName : subjectName.current.value,
-    //     description : description.current.value,
-    //     subjectCode : subjectCode.current.value,
-    //     schedule : schedule.current.value,
-        
-    //   }),
-    // })
-    // setOpenModal(false);
-    // return redirect("/");
-
+     const response=await fetch("/api/teacher",{
+      method: "POST",
+      headers: {
+        "Content-type" : "application/json",
+      },
+      body: JSON.stringify({
+        teacherId : Number(teachedId),
+        subjectName : subjectName.current.value,
+        description : description.current.value,
+        subjectCode : subjectCode.current.value,
+        schedule : schedule.current.value,
+      }),
+    })
+    return redirect("/teacher");
   }
 
   useEffect(() => {
@@ -140,7 +134,6 @@ export function HomeTeacher() {
         <Modal.Header>Add Class</Modal.Header>
         <Modal.Body>
           <Form>
-            <TextInput className='hidden' name="teacher" ref={teacher} defaultValue={1}/>
             <div className='mb-2'>
               <Label>Subject Name </Label>
               <TextInput name="subjectName" ref={subjectName} required></TextInput>
@@ -158,7 +151,7 @@ export function HomeTeacher() {
               <TextInput name="schedule" ref={schedule} placeholder='ex. 5:00-9:00 TTH'/>
             </div>
             <div className='flex py-2'>
-              <Button onClick={onSubmit} className="mr-2">Create</Button>
+              <Button type="submit" onClick={onSubmit} className="mr-2">Create</Button>
               <Button color="gray" onClick={() => setOpenModal(undefined)}>Cancel</Button>
             </div>
           </Form>

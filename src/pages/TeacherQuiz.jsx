@@ -6,7 +6,7 @@ import { Button, Radio, Label, Modal, TextInput, Textarea } from 'flowbite-react
 import { HiPlus } from 'react-icons/hi';
 
 function TeacherQuiz() {
-
+    
   const [openModal, setOpenModal] = useState(false);
   const [choicesList, setChoicesList]=useState([]);
   const [answer, setAsnwer] = useState('');

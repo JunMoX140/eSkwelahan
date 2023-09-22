@@ -75,7 +75,7 @@ function DashboardTeacher() {
                 <Table.Body className="divide-y">
                     <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell>
-                        Cris
+                        Cris Vincent Ferrer
                     </Table.Cell>
                     <Table.Cell>
                         <a
@@ -92,7 +92,25 @@ function DashboardTeacher() {
                     <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell>
                         <p>
-                        Web Development
+                        Mark Omega
+                        </p>
+                    </Table.Cell>
+                    <Table.Cell>
+                        <a
+                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                        href="/teacher/class"
+                        >
+                        <p>
+                        View Subject
+                        </p>
+                        </a>
+                    </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
+                    <Table.Cell>
+                        <p>
+                        Joevy Blanco
                         </p>
                     </Table.Cell>
                     <Table.Cell>

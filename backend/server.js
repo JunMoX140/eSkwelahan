@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+
 app.use(authenticated);
 app.use("/api/todos", todosRouter);
 app.use("/api/teacher",teacherRouter);

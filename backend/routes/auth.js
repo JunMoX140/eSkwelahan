@@ -7,8 +7,8 @@ import bcrypt from 'bcryptjs';
 import tokenValidator from "../services/tokenValidator.js";
 
 const {JWT_SECRET}= process.env;
-const authRouter = express.Router();
 
+const authRouter = express.Router();
 
 const userSchema = z.object({
   firstName: z.string(),
@@ -41,7 +41,7 @@ authRouter.post("/sign-up", async (req, res)=> {
       }))
     );
   }
-
+  console.log(newUser)
   const { data }= newUser;
   const hashpassword = await bcrypt.hash(data.password, 10);
   try {

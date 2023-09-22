@@ -18,7 +18,7 @@ Content-Type: application/json
     "middleName" : "Ga",
     "suffix" : "xs",
     "email" : "test@gmail.com",
-    "password" : "testpass",
+    "password" : "123",
     "userType" : 1
 }
 
@@ -28,7 +28,7 @@ POST http://localhost:8081/api/auth/sign-in
 Content-Type: application/json
 
 {
-    "email" : "test1@gmail.com",
+    "email" : "test@gmail.com",
     "password" : "testpass"
 }
 
@@ -39,11 +39,11 @@ POST http://localhost:8081/api/teacher
 Content-Type: application/json
 
 {
-        "teacher" : 1,
-        "subjectName" : "test",
-        "description" : "test",
-        "subjectCode" : "test",
-        "schedule" : "test"
+        "teacherId" : 1,
+        "subjectName" : "Programming",
+        "description" : "Web Development",
+        "subjectCode" : "PROG123",
+        "schedule" : "3-5:00 TTH"
 }
 ###
 GET http://localhost:8081/api/teacher/1

@@ -7,6 +7,7 @@ import DefaultNavbar from "../components/DefaultNavbar";
 import FooterComp from "../components/FooterComp";
 import FAQ from "../components/FAQ";
 import CallToAction from "../components/CallToAction";
+import { Button } from "flowbite-react";
 
 function Landing() {
   return (
@@ -32,12 +33,10 @@ function Landing() {
                         >
                           FAQ&apos;s
                         </a>
-
-                        <Link
-                          to={"/login"}
-                          className="text-lm-text bg-lm-primary hover:bg-lm-accent rounded-md px-3  py-2 text-sm font-medium uppercase"
-                        >
-                          Login
+                        <Link to={"/login"}>
+                          <Button size="sm">
+                            Login
+                          </Button>
                         </Link>
                       </div>
                     </div>
@@ -58,22 +57,16 @@ function Landing() {
                   >
                     FAQ&apos;s
                   </a>
-                  <a
-                    href="#"
-                    className="text-color3 bg-lm-primary block rounded-md px-3 py-2 text-base font-medium"
-                  >
-                    Login
-                  </a>
                 </div>
               </div>
             </nav>
             <div className="flex flex-1 bg-color3">
               <div className="grid grid-cols-2 gap-8 mr-12">
                 <div className="flex flex-wrap justify-end">
-                  <div className="w-3/4">
+                  <div className="w-full">
                     <img className="h-300" src={Eskwelahan} alt="" />
                   </div>
-                  <div className="w-3/4 text-center">
+                  <div className="w-full text-center">
                     <p>
                       &quot;Unlock the future of education with&quot;
                       <br />
@@ -92,14 +85,14 @@ function Landing() {
                       Empower teachers, engage students, and elevate education
                       to new heights.&quot;
                     </p>
-                    <div className=" w-60 flex justify-start mt-16 ml-36">
+                    <div className="w-full flex justify-center mt-16">
                       <CallToAction />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center">
-                  <div className=" w-11/12 h-full">
+                  <div className=" w-full h-full">
                     <DefaultCarousel />
                   </div>
                 </div>
@@ -108,8 +101,8 @@ function Landing() {
           </div>
         </div>
       </div>
-      <FAQ className=" w-screen h-screen" />
-      <FooterComp />
+      {/* <FAQ className=" w-screen h-screen" />
+      <FooterComp /> */}
     </div>
   );
 }

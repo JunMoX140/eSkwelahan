@@ -10,7 +10,7 @@ const TodoSchema = z.object({
   description : z.string(),
   subjectCode : z.string(),
   schedule: z.string(),
-  teacher: z.number()
+  teacherId: z.number()
 });
 
 teacherRouter.get("/:id", async (req, res) => {
@@ -41,7 +41,7 @@ teacherRouter.get("/:id", async (req, res) => {
 
     const [createdClass] =
     await sql`INSERT INTO subject (subject_name, code, description,schedule,teacher_id) 
-              VALUES (${newClass.subjectName}, ${newClass.subjectCode},${newClass.description},${newClass.schedule},${newClass.teacher}) RETURNING *`;
+              VALUES (${newClass.subjectName}, ${newClass.subjectCode},${newClass.description},${newClass.schedule},${newClass.teacherId}) RETURNING *`;
 
     res.status(201).send(camelcaseKeys(createdClass));
   });

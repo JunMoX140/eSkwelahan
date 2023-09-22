@@ -9,7 +9,6 @@ function DefaultCarousel() {
         <img alt="..." src="src/assets/images/img2.jpg" />
         <img alt="..." src="src/assets/images/img3.jpg" />
         <img alt="..." src="src/assets/images/img4.jpg" />
-        <img alt="..." src="src/assets/images/img5.jpg" />
       </Carousel>
     </>
   );

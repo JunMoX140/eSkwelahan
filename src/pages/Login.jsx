@@ -37,10 +37,13 @@ const Login = () => {
         "authenticatedUser",
         JSON.stringify(authenticatedUser)
       );
+      
+      
+      const { userType } = JSON.parse(localStorage.getItem("authenticatedUser"));
 
-      const usertype = JSON.parse(localStorage.getItem("authenticatedUser"));
-      if(usertype === 1){ navigate("/teacher"); }
-      else {navigate("/student");}
+      if(userType === 0){ navigate("/student"); }
+      else {navigate("/teacher");}
+
     } catch (err) {
       
       const { error } = err.response.data;
