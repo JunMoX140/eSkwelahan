@@ -1,74 +1,72 @@
-import React from 'react'
-import { Sidebar } from 'flowbite-react';
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function StudentSidebar() {
+  const students = [
+    { name: 'Cris Vincent Ferrer', quizTitle: 'Quiz 1' },
+    { name: 'Mark Omega', quizTitle: 'Quiz 1' },
+    { name: 'Joevy Blanco', quizTitle: 'Quiz 1' },
+  ];
+
+  const [expandedStudent, setExpandedStudent] = useState(null);
+
+  const toggleStudent = (studentName) => {
+    if (expandedStudent === studentName) {
+      setExpandedStudent(null);
+    } else {
+      setExpandedStudent(studentName);
+    }
+  };
+
   return (
-    <div>
-        {/* <Sidebar aria-label="Default sidebar example" >
-      <Sidebar.Items >
-        <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiChartPie}>
-            <p>
-              Dashboard
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiViewBoards}
-            label="Pro"
-            labelColor="dark"
-          >
-            <p>
-              Kanban
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiInbox}
-            label="3"
-          >
-            <p>
-              Inbox
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiUser}
-          >
-            <p>
-              Users
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiShoppingBag}
-          >
-            <p>
-              Products
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiArrowSmRight}
-          >
-            <p>
-              Sign In
-            </p>
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiTable}
-          >
-            <p>
-              Sign Up
-            </p>
-          </Sidebar.Item>
-        </Sidebar.ItemGroup>
-      </Sidebar.Items>
-    </Sidebar> */}
-    </div>
-  )
+    <aside
+      id="default-sidebar"
+      className="top-16 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+      aria-label="Sidebar"
+    >
+      <div className="h-full px-3 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <ul className="space-y-2 font-medium">
+          {students.map((student, index) => (
+            <li key={index}>
+              <div
+                className="flex items-center p-2 text-lm-primary rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group cursor-pointer"
+                onClick={() => toggleStudent(student.name)}
+              >
+                <span className="ml-3 text-gray-500">{student.name}</span>
+              </div>
+              {expandedStudent === student.name && (
+                <ul>
+                  <li>
+                    <Link
+                      to={`/student/dashboard/${student.name}/${student.quizTitle}`}
+                      className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                      <span className="ml-3 text-cyan-600">{student.quizTitle}</span>
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  );
 }
 
-export default StudentSidebar
+function QuizDashboard({ studentName, quizTitle }) {
+  // ...
+}
+
+function StudentDashboard() {
+  return (
+    <div className="flex">
+      <StudentSidebar />
+      <div className="flex-grow p-5">
+        <p></p>
+      </div>
+    </div>
+  );
+}
+
+export default StudentDashboard;
