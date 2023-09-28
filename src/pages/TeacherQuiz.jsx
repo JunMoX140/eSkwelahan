@@ -1,52 +1,92 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useState } from 'react';
 import QuizCard from '../components/QuizCard'
-import { GrAdd } from 'react-icons/gr'
+import { MdAddBox } from 'react-icons/md'
 import { Button, Radio, Label, Modal, TextInput, Textarea, Select, Card} from 'flowbite-react';
-import { HiPlus } from 'react-icons/hi';
+import { HiPlus, HiX } from 'react-icons/hi';
+import useIsAuthenticated from '../hooks/useIsAuthenticated';
+import { useParams } from 'react-router-dom';
 
 function TeacherQuiz() {
     
   const [openModal, setOpenModal] = useState(false);
-  const [choicesList, setChoicesList]=useState([]);
   const [answer, setAsnwer] = useState('');
-
-  const [quiz, setQuizes] = useState({
-    Question: '',
-    Choices: [],
-    Answer: '',
-    Points:0
-  });
+  const [choicesList, setChoicesList]=useState([]);
+  const [quizes, setQuizes] =useState([]);
+  const [quizTitle, setQuizTitle]=useState("");
 
   const choiceRef=useRef();
+  const questionRef=useRef();
+  const pointsRef=useRef();
+  const {quizid} = useParams();
 
-   function onAddQuiz(){
-    console.log(answer.toString());
+  useEffect(() => {
+    async function loadQuizDetails() {
+      const response=await fetch(`/api/teacher/class/quiz/details/${quizid}`);
+      const {details, content }= await response.json();
+      const {title} = details[0];
+      console.log(title);
+      setQuizTitle(title);
+      setQuizes(content);
+
+    }
+    loadQuizDetails();
+  }, [quizid]);
+
+   async function onAddQuiz(){
+
+    const question= questionRef.current.value;
+    const points= pointsRef.current.value;
+
+    const quizobj= {
+                      question : question,
+                      choices : choicesList,
+                      answer : answer,
+                      points : points
+                    }
+    console.log(quizobj);
+
+  const response=await fetch(`/api/teacher/class/quiz/add`,{
+    method: "POST",
+    headers: {
+      "Content-type" : "application/json",
+    },
+    body: JSON.stringify({
+      quizId: quizid,
+      content: quizobj,
+      quizType: 1
+    }),
+  })
     setOpenModal(false);
   }
 
  const onAddChoices=()=>{
-    const data= choiceRef.current.value;
-    setChoicesList((prev)=>([...prev, data ]));
+  const choice= choiceRef.current.value;
+    if(choice ==="" || choicesList.includes(choice)){
+      choiceRef.current.value="";
+      return;
+    }
+    setChoicesList((prev)=>([...prev, choice ]));
     choiceRef.current.value="";
   }
   
   return (
-    <div >
-      <div className='w-full mb-2'>
-        <Card>
-          <TextInput />
-        </Card>
+    <div className='bg-color3 pb-3'>
+      <div className='w-full mb-3'>
+        <span className='text-2xl ml-3 mt-3 text-color1 font-bold'>{quizTitle}</span>
       </div>
-      <div className='flex w-full'>
-        <Select className='w-4/5 text-sm rounded-lg' name="" id="">
+      <div className='flex w-full justify-center'>
+        <Select className='w-2/5 text-sm rounded-lg' name="" id="">
+          <option value="0">--Please select--</option>
           <option value="1">Multiple Choice</option>
-          <option value="2">Essay</option>
         </Select>
-        <button onClick={()=> setOpenModal(true)} className='w-1/5 p-2 ml-3 bg-lm-bg rounded'><GrAdd className='mx-auto'/></button>
+        <Button onClick={()=> setOpenModal(true)} className='ml-2'><HiPlus className="h-4 w-4" /></Button>
       </div>
        <div>
-      
+        { quizes && quizes.map((quiz)=>(
+          <QuizCard key={quiz} details={quiz.activity_content}/>
+        ))
+        }
        </div>
 
       <div>
@@ -54,50 +94,60 @@ function TeacherQuiz() {
             <Modal.Header>Add Quiz Details</Modal.Header>
             <Modal.Body>
               <div>
-              <Label htmlFor='question'>Question</Label>
+              <Label htmlFor='question' sizing="sm">Question</Label>
               <Textarea
                 id="question"
                 placeholder="Question..."
                 required
                 rows={4}
+                sizing="sm"
+                ref={questionRef}
               />
               </div>
-              <div className='flex items-end mt-3'>
+              <div className='flex items-end mt-2'>
                 <div className='w-2/5'>
-                  <Label htmlFor='choices'>Points</Label>
-                  <TextInput type='number' ref={choiceRef} /> 
-              </div>
+                    <Label htmlFor='choices' sizing="sm">Choices</Label>
+                    <TextInput type="text" sizing="sm" ref={choiceRef} /> 
+                </div>
+                <div className='flex items-end mt-3'>
+                <div className='w-2/5 px-2'>
+                    <Button size="sm" onClick={onAddChoices} >
+                      <HiPlus className="h-4 w-4" />
+                    </Button>
+                </div>
+                </div>
+
+                  <div className='flex w-3/5 justify-end'>
+                    <div className='w-1/3'>
+                      <Label htmlFor='choices' sizing='sm'>Points</Label>
+                      <TextInput type='number' sizing='sm' ref={pointsRef} required /> 
+                    </div>
+                </div>
           
               </div>
-              <div className='flex items-end mt-3'>
-                <div className='w-2/5'>
-                  <Label htmlFor='choices'>Choices</Label>
-                  <TextInput ref={choiceRef} /> 
-              </div>
-              <div className='w-2/5 px-2'>
-                  <Button pill onClick={onAddChoices}>
-                    <HiPlus className="h-6 w-6" />
-                  </Button>
-              </div>
               
-              </div>
-              <div className='mt-3'>
-              <Label>Answer</Label>
-              <fieldset onChange={()=>setAsnwer()}
-                  className="flex mt-3 max-w-md flex-col gap-4"
+              <div className='mt-2'>
+              <Label sizing="sm">Answer</Label>
+              <fieldset 
+                  className="flex mt-3 max-w-md flex-col gap-4 className='text-xs'"
                   id="radio"
                 >
                   {
-                    choicesList.map( (list) =>(
-                      <div  key={list} className="flex items-center gap-2">
+                    choicesList && choicesList.map((choice) =>(
+                      <div  key={choice} className="flex items-center gap-2">
                       <Radio 
-                        id={list}
-                        value={list}
+                        id={choice}
+                        sizing="sm"
+                        value={choice}
                         name='choices'
+                        onChange={(e)=>setAsnwer(e.target.value)}
                       />
-                      <Label htmlFor={list}>
-                        {list}
+                      <Label sizing="sm" className='w-20 text-xs ml-2'>
+                        {choice}
                       </Label>
+                      <Button className='h-4 w-6'>
+                        <HiX className='h-2'/>
+                      </Button>
                     </div>
                     ))
                   }
@@ -107,9 +157,7 @@ function TeacherQuiz() {
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={onAddQuiz}>Add</Button>
-              <Button color="gray" onClick={() => setOpenModal(false)}>
-                Cancel
-              </Button>
+              <Button color="gray" onClick={() => setOpenModal(false)}>Cancel</Button>
             </Modal.Footer>
           </Modal>
       </div>

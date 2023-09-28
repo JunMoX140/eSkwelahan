@@ -1,9 +1,9 @@
 import React from 'react'
-import DefaultNavbar from '../components/DefaultNavbar'
 import { useEffect, useRef, useState } from "react";
 import { Button, Modal, TextInput, Table, Label } from 'flowbite-react';
-import { Form, redirect } from 'react-router-dom';
+import { Form, redirect, useNavigate } from 'react-router-dom';
 import useIsAuthenticated from '../hooks/useIsAuthenticated';
+import EschoolNavbar from '../components/EschoolNavbar';
 
 export const loader = async () => {
   try{
@@ -35,9 +35,9 @@ export const loader = async () => {
 //     }),
 //   })
 // }
-
-export function HomeTeacher() {
+ function HomeTeacher() {
   useIsAuthenticated();
+  const navigate=useNavigate();
   const [teacherClass, setTeacherClass] = useState([]);
   const [openModal, setOpenModal]= useState();
 
@@ -61,7 +61,11 @@ export function HomeTeacher() {
         schedule : schedule.current.value,
       }),
     })
-    return redirect("/teacher");
+    setOpenModal(false);
+    if(response){
+      navigate(`/teacher`);
+    }
+   
   }
 
   useEffect(() => {
@@ -75,10 +79,10 @@ export function HomeTeacher() {
   return (
     <>
     <div className='w-full h-16'>
-      <DefaultNavbar />  
+      <EschoolNavbar />  
     </div>
       <div className='top-16 w-2/3 mx-auto'>
-        <button className='bg-lm-primary px-4 py-2 mb-4 text-lm-secondary text-sm rounded' onClick={() => setOpenModal('default')}>Create Class</button>
+          <Button size="md" className='mb-2' onClick={() => setOpenModal('default')}>Create Class</Button>
         <div>
         <Table striped >
         <Table.Head>
@@ -101,11 +105,11 @@ export function HomeTeacher() {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-        {teacherClass.map((tclass) => (
-          <Table.Row key={tclass.subject_id} className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
+        {teacherClass && teacherClass.map((tclass) => (
+          <Table.Row key={tclass.subject_id} className="bg-lm-bg p-0 dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell>
               {tclass.subject_name}
-            </Table.Cell>
+            </Table.Cell >
             <Table.Cell>
               {tclass.description}
             </Table.Cell>
@@ -116,14 +120,11 @@ export function HomeTeacher() {
               {tclass.enrolled}
             </Table.Cell>
             <Table.Cell>
-            <a
-                className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                href="/teacher/class"
-              >
+            <a className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                href={`teacher/class/${tclass.subject_id}/dashboard`}>
                 View Class
               </a>
             </Table.Cell>
-            
           </Table.Row>
         ))}
         </Table.Body>
@@ -160,4 +161,6 @@ export function HomeTeacher() {
     </>
   )
 }
+
+export default HomeTeacher
 

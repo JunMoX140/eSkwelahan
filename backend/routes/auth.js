@@ -104,7 +104,9 @@ authRouter.post("/sign-in", async (req, res) => {
   return res.status(200).cookie("token", token, { httpOnly: true }).json({
     id: foundUser.userId,
     email: foundUser.email,
-    userType : foundUser.userTypeId
+    userType : foundUser.userTypeId,
+    user: foundUser.firstname + " " + foundUser.lastname,
+    email: foundUser.email
     
   });
 });

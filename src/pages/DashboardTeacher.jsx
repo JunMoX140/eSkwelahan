@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Card } from 'flowbite-react';
 import { Table } from 'flowbite-react';
+import { useParams } from 'react-router-dom';
+import useIsAuthenticated from '../hooks/useIsAuthenticated';
 
 function DashboardTeacher() {
+    // useIsAuthenticated();
+ const [details, setDetails] = useState({});
+ const { id } = useParams();
 
   return (
     <>
@@ -61,7 +66,7 @@ function DashboardTeacher() {
                 </div>
         </div> */}
         <div>
-                <Table striped >
+            <Table striped >
                 <Table.Head>
                     
                     <Table.HeadCell>

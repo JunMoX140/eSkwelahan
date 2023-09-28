@@ -1,28 +1,53 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react';
 import { Button, Modal, TextInput  } from 'flowbite-react';
 
 
 function ModalAddQuiz({openModal, setOpenModal}) {
+  const quizNameRef=useRef();
+
+  async function onClickAddQuiz(){
+    const response=await fetch("/api/teacher",{
+      method: "POST",
+      headers: {
+        "Content-type" : "application/json",
+      },
+      body: JSON.stringify({
+        teacherId : Number(teachedId),
+        subjectName : subjectName.current.value,
+        description : description.current.value,
+        subjectCode : subjectCode.current.value,
+        schedule : schedule.current.value,
+      }),
+    })
+    return redirect(`/teacher/class`);
+
+    console.log(quizNameRef.current.value)
+    setOpenModal(false);
+
+  }
   
   return(
     <>
       {/* <Button onClick={() => props.setOpenModal('default')}>Toggle modal</Button> */}
-      <Modal show={openModal == true} onClose={() => setOpenModal(false)}>
+      <Modal size="sm" show={openModal == true} onClose={() => setOpenModal(false)}>
       {/* <Modal show={props.openModal==="default"} onClose={props.openModal==""}> */}
-        <Modal.Header>Add Question Details</Modal.Header>
+        <Modal.Header>Add Quiz Name</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
           <TextInput
+              type='text'
               id="txtQuiz"
-              placeholder="Quiz Title"
+              placeholder="Quiz Name"
               required
+              className='text-xs'
+              ref={quizNameRef}
             />
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>Create Quiz</Button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
+          <Button size="sm" onClick={onClickAddQuiz}>Create Quiz</Button>
+          <Button size="sm" color="gray" onClick={() => setOpenModal(false)}>
             Cancel
           </Button>
         </Modal.Footer>

@@ -19,7 +19,7 @@ Content-Type: application/json
     "suffix" : "xs",
     "email" : "test@gmail.com",
     "password" : "123",
-    "userType" : 1
+    "userType" : 2
 }
 
 ###
@@ -28,8 +28,8 @@ POST http://localhost:8081/api/auth/sign-in
 Content-Type: application/json
 
 {
-    "email" : "test@gmail.com",
-    "password" : "testpass"
+    "email" : "cris@gmail.com",
+    "password" : "123"
 }
 
 
@@ -46,4 +46,16 @@ Content-Type: application/json
         "schedule" : "3-5:00 TTH"
 }
 ###
-GET http://localhost:8081/api/teacher/1
+GET http://localhost:8081/api/teacher/class/24
+
+###
+POST http://localhost:8081/api/teacher/class/quiz
+Content-Type: application/json
+
+{
+        "title" : "Test",
+        "classid" : 24
+}
+
+###
+GET http://localhost:8081/api/teacher/class/quiz/15/details

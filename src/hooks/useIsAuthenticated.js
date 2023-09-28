@@ -23,7 +23,7 @@ export default function useIsAuthenticated() {
   useEffect(() => {
     async function init() {
       const isAuthenticated = await checkIfAuthenticated();
-      !isAuthenticated && navigate("/login");
+      !isAuthenticated && navigate("/");
     }
     init();
   }, [navigate]);

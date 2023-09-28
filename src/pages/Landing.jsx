@@ -4,18 +4,19 @@ import Eskwelahan from "../assets/images/logo 1 gradient.png";
 import { Link } from "react-router-dom";
 import DefaultCarousel from "../components/DefaultCarousel";
 import DefaultNavbar from "../components/DefaultNavbar";
-import FooterComp from "../components/FooterComp";
 import FAQ from "../components/FAQ";
-import CallToAction from "../components/CallToAction";
 import { Button } from "flowbite-react";
+import EschoolNavbar from "../components/EschoolNavbar";
+
 
 function Landing() {
   return (
     <div id="top">
-      <div className="w-screen h-screen bg-color3">
-        <div className="container mx-auto">
-          <div className="w-full h-screen bg-color3">
-            <nav className="bg-color3 mb-6">
+      <div className="w-screen h-screen bg-color3 pb-3">
+        <div className="container">
+          <div className="w-full h-full bg-color3">
+            <EschoolNavbar/>
+            {/* <nav className="bg-color3">
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
@@ -33,18 +34,13 @@ function Landing() {
                         >
                           FAQ&apos;s
                         </a>
-                        <Link to={"/login"}>
-                          <Button size="sm">
-                            Login
-                          </Button>
-                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="sm:hidden" id="mobile-menu">
-                <div className="space-y-1 px-2 pb-3 pt-2">
+                <div className="space-y-1 px-2">
                   <a
                     href="#"
                     className=" bg-lm-bg text-lm-text dark:bg-dark-bg dark:text-dark-text rounded-md px-3 py-2 text-base font-medium"
@@ -59,12 +55,12 @@ function Landing() {
                   </a>
                 </div>
               </div>
-            </nav>
+            </nav> */}
             <div className="flex flex-1 bg-color3">
-              <div className="grid grid-cols-2 gap-8 mr-12">
+              <div className="grid grid-cols-2 gap-8 mr-10">
                 <div className="flex flex-wrap justify-end">
                   <div className="w-full">
-                    <img className="h-300" src={Eskwelahan} alt="" />
+                    <img className="h-250" src={Eskwelahan} alt="" />
                   </div>
                   <div className="w-full text-center">
                     <p>
@@ -76,23 +72,25 @@ function Landing() {
                         </h1>
                       </span>
                       <br />
-                      <br />
                       &quot;Unlock the future of education with eSkwelahan: the
                       all-in-one web-based classroom management system designed
                       to revolutionize learning.
                       <br />
-                      <br />
                       Empower teachers, engage students, and elevate education
                       to new heights.&quot;
                     </p>
-                    <div className="w-full flex justify-center mt-16">
-                      <CallToAction />
+                    <div className="w-full flex justify-center mt-8">
+                    <Link to={"/login"}>
+                      <Button className=" mx-auto px-4 text-2xl uppercase rounded-md">
+                        Login
+                      </Button>
+                    </Link>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center">
-                  <div className=" w-full h-full">
+                  <div className="w-full h-full p-4">
                     <DefaultCarousel />
                   </div>
                 </div>
@@ -101,8 +99,6 @@ function Landing() {
           </div>
         </div>
       </div>
-      {/* <FAQ className=" w-screen h-screen" />
-      <FooterComp /> */}
     </div>
   );
 }

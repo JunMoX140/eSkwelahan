@@ -1,85 +1,76 @@
-import React from 'react'
-import { Card, Label, Radio} from 'flowbite-react';
-import {MdDelete, MdEditSquare} from 'react-icons/md'
+import React, { useState } from 'react'
+import { Card, Label, Radio, Textarea, TextInput, Button} from 'flowbite-react';
+import {MdDelete, MdEditSquare} from 'react-icons/md';
+import { HiPlus } from 'react-icons/hi';
 
-function QuizCard() {
+function QuizCard(props) {
+  if(props.details == null){
+    return null;
+  }
+  
+  const [choicesList, setChoicesList]=useState(props.details.choices);
+  
   return (
-    <div className='flex'>
-    <div className='my-4'>
-      <Card className='bg-lm-bg'>
-      <fieldset className="flex max-w-md flex-col gap-4 border-gray-50" id="radio">
-      <legend className="mb-6">
-        <textarea name="" id="" cols="100" rows="5" placeholder='Question'></textarea>
-      </legend>
-      <div className="flex items-center gap-2">
-        <Radio
-          id="united-state"
-          name="countries"
-          value="USA"
-        />
-        <Label htmlFor="united-state">
-          United States
-        </Label>
-      </div>
-      <div className="flex items-center gap-2">
-        <Radio
-          id="germany"
-          name="countries"
-          value="Germany"
-        />
-        <Label htmlFor="germany">
-          Germany
-        </Label>
-      </div>
-      <div className="flex items-center gap-2">
-        <Radio
-          id="spain"
-          name="countries"
-          value="Spain"
-        />
-        <Label htmlFor="spain">
-          Spain
-        </Label>
-      </div>
-      <div className="flex items-center gap-2">
-        <Radio
-          id="uk"
-          name="countries"
-          value="United Kingdom"
-        />
-        <Label htmlFor="uk">
-          United Kingdom
-        </Label>
-      </div>
-      <div className="flex items-center gap-2">
-        <Radio
-          disabled
-          id="china"
-          name="countries"
-          value="China"
-        />
-        <Label
-          disabled
-          htmlFor="china"
-        >
-          <p>
-            China (disabled)
-          </p>
-        </Label>
-      </div>
-    </fieldset>
-    
-      </Card>
-    </div>
-    <div className='bg-lm-bg m-4 w-24 p-2'>
-      <button><MdEditSquare className='h-10 w-full'/></button>
-      <button><MdDelete/></button>
-      
-      
-    </div>
-    </div>
-    
+    <div>
+      <div className='flex h-full p-3'>
+        <div className='flex-1'>
+        <Card>
+            <div>
+              <Label htmlFor='question' sizing="sm">Question</Label>
+              <Textarea
+                id="question"
+                placeholder="Question..."
+                required
+                rows={4}
+                size="xs"
+                className='text-sm'
+                value={props.details.question}
+                readOnly
+              />
+              </div>
 
+              <div className='flex'>
+                  <div className=''>
+                  <Label sizing="sm">Choices</Label>
+                  <ul>
+                    <li></li>
+                  </ul>
+                  <fieldset className="flex max-w-md flex-col gap-2 text-xs" id="radio">
+                      { choicesList && choicesList.map((choice) =>(
+                          <div  key={choice} className="flex items-center gap-2">
+                          <Radio 
+                            sizing="sm"
+                            value={choice}
+                            name='choices'
+                            onChange={(e)=>setAsnwer(e.target.value)}
+                          />
+                          <Label sizing="sm">
+                            {choice}
+                          </Label>
+                        </div>
+                        ))
+                      }
+                    </fieldset>
+                  </div>
+
+                  <div className='flex w-3/5 justify-end'>
+                    <div className='flex w-1/3'>
+                      <Label htmlFor='choices' sizing='sm'>Points: </Label>
+                      <Label>{props.details.points}</Label>
+                    </div>
+                </div>
+              </div>
+            </Card>
+            
+        </div>
+          <div className='w-28 ml-5'>
+          <Card>
+              <Button size="xs">EDIT</Button>
+              <Button size="xs" color="failure">DELETE</Button>
+          </Card>
+        </div>
+      </div>
+    </div>
   )
 }
 
