@@ -12,6 +12,7 @@ import FooterComp from "./components/FooterComp";
 import TeacherQuiz from "./pages/TeacherQuiz.jsx";
 import DashboardTeacher from "./pages/DashboardTeacher";
 import LoginPage from "./pages/LoginPage";
+import HomeStudent from "./pages/HomeStudent";
 
 const router = createBrowserRouter([
   {
@@ -42,16 +43,32 @@ const router = createBrowserRouter([
   
   {
     path: "/student",
-    element: <Student />,
+    element: <HomeStudent />,
     errorElement: <Errorpage />,
   },
+  // {
+  //   path: "/student/class/:classid",
+  //   element:  <SClass />,
+  //   errorElement: <Errorpage/>,
+  //   children: [
+      
+  //     {
+  //       path: "/teacher/class/:classid/dashboard",
+  //       element:  <DashboardTeacher />,
+  //     },
+  //     {
+  //       path: "/teacher/class/:classid/quiz/:quizid",
+  //       element:  <TeacherQuiz />,
+  //     },
+      
+  //   ]
+  // },
   {
     path: "/teacher",
     element: <HomeTeacher />,
     errorElement: <Errorpage />,
   
   },
-  
   {
     path: "/teacher/class/:classid",
     element:  <TeacherClass />,

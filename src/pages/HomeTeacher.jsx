@@ -48,24 +48,26 @@ export const loader = async () => {
   const teachedId= JSON.parse(localStorage.getItem("authenticatedUser")).id; 
 
   async function onSubmit(){
-     const response=await fetch("/api/teacher",{
-      method: "POST",
-      headers: {
-        "Content-type" : "application/json",
-      },
-      body: JSON.stringify({
-        teacherId : Number(teachedId),
-        subjectName : subjectName.current.value,
-        description : description.current.value,
-        subjectCode : subjectCode.current.value,
-        schedule : schedule.current.value,
-      }),
-    })
-    setOpenModal(false);
-    if(response){
-      navigate(`/teacher`);
+    try{
+      const response=await fetch("/api/teacher",{
+        method: "POST",
+        headers: {
+          "Content-type" : "application/json",
+        },
+        body: JSON.stringify({
+          teacherId : Number(teachedId),
+          subjectName : subjectName.current.value,
+          description : description.current.value,
+          subjectCode : subjectCode.current.value,
+          schedule : schedule.current.value,
+        }),
+      })
+      setOpenModal(false);
+
+      return redirect(`/teacher`);
     }
-   
+    catch{}
+     
   }
 
   useEffect(() => {

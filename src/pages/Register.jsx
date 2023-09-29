@@ -45,7 +45,10 @@ async function onSignupClick(){
       }),
     });
 
-    navigate("/login");
+    const { userType } = JSON.parse(localStorage.getItem("authenticatedUser"));
+
+    if(userType === 0){ navigate("/student"); }
+    else {navigate("/teacher");}
   }catch(e){
 
   }

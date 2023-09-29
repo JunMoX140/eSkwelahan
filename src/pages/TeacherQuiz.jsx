@@ -5,10 +5,11 @@ import { MdAddBox } from 'react-icons/md'
 import { Button, Radio, Label, Modal, TextInput, Textarea, Select, Card} from 'flowbite-react';
 import { HiPlus, HiX } from 'react-icons/hi';
 import useIsAuthenticated from '../hooks/useIsAuthenticated';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function TeacherQuiz() {
-    
+  useIsAuthenticated();
+  const navigate=useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [answer, setAsnwer] = useState('');
   const [choicesList, setChoicesList]=useState([]);
@@ -18,7 +19,7 @@ function TeacherQuiz() {
   const choiceRef=useRef();
   const questionRef=useRef();
   const pointsRef=useRef();
-  const {quizid} = useParams();
+  const {quizid, classid} = useParams();
 
   useEffect(() => {
     async function loadQuizDetails() {
@@ -28,13 +29,11 @@ function TeacherQuiz() {
       console.log(title);
       setQuizTitle(title);
       setQuizes(content);
-
     }
     loadQuizDetails();
   }, [quizid]);
 
    async function onAddQuiz(){
-
     const question= questionRef.current.value;
     const points= pointsRef.current.value;
 
@@ -44,20 +43,23 @@ function TeacherQuiz() {
                       answer : answer,
                       points : points
                     }
-    console.log(quizobj);
 
-  const response=await fetch(`/api/teacher/class/quiz/add`,{
-    method: "POST",
-    headers: {
-      "Content-type" : "application/json",
-    },
-    body: JSON.stringify({
-      quizId: quizid,
-      content: quizobj,
-      quizType: 1
-    }),
-  })
-    setOpenModal(false);
+    try{
+      const response=await fetch(`/api/teacher/class/quiz/add`,{
+        method: "POST",
+        headers: {
+          "Content-type" : "application/json",
+        },
+        body: JSON.stringify({
+          quizId: quizid,
+          content: quizobj,
+          quizType: 1
+        }),
+      })
+     navigate(`/teacher/class/${classid}/quiz/${quizid}`);
+    }
+    catch{}
+ 
   }
 
  const onAddChoices=()=>{
