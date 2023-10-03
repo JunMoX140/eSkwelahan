@@ -85,7 +85,7 @@ async function onSignupClick(){
                   <TextInput
                     id="grid-last-name"
                     type="text"
-                    placeholder="Rizal"
+                    placeholder=""
                     ref={lastnameRef}
                     required
                     
@@ -101,7 +101,7 @@ async function onSignupClick(){
                   <TextInput
                     id="grid-first-name"
                     type="text"
-                    placeholder="Jose"
+                    placeholder=""
                     ref={firstnameRef}
                     required
                    
@@ -119,7 +119,7 @@ async function onSignupClick(){
                   <TextInput
                     id="grid-middle-name"
                     type="text"
-                    placeholder="Protasio"
+                    placeholder=""
                     ref={middlenameRef}
                     
                   />
@@ -134,7 +134,7 @@ async function onSignupClick(){
                   <TextInput
                     id="grid-suffix"
                     type="text"
-                    placeholder="Jr"
+                    placeholder=""
                     ref={suffixRef}
                     
                   />
@@ -151,7 +151,7 @@ async function onSignupClick(){
                   <TextInput
                     id="grid-email"
                     type="email"
-                    placeholder="example@gmail.com"
+                    placeholder=""
                     ref={emailRef}
                     required
                   />
@@ -187,7 +187,7 @@ async function onSignupClick(){
                   ref={passwordRef}
                     id="grid-password"
                     type="password"
-                    placeholder="******"
+                    placeholder=""
                     required
                   />
                 </div>
@@ -204,7 +204,7 @@ async function onSignupClick(){
                     ref={confirmpasswordRef}
                     id="grid-confirmpassword"
                     type="password"
-                    placeholder="*******"
+                    placeholder=""
                     required
                   />
                   <p className="text-red-600 text-xs italic">
