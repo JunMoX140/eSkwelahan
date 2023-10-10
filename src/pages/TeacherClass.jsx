@@ -35,19 +35,26 @@ useEffect(()=>{
 },[classid]);
 
 async function onClickAddQuiz(){
-   const response=await fetch(`/api/teacher/class/quiz`,{
-     method: "POST",
-     headers: {
-       "Content-type" : "application/json",
-     },
-     body: JSON.stringify({
-       title: quizNameRef.current.value,
-       classid: classid
-     }),
-   })
+  try {
+    const response=await fetch(`/api/teacher/class/quiz`,{
+      method: "POST",
+      headers: {
+        "Content-type" : "application/json",
+      },
+      body: JSON.stringify({
+        title: quizNameRef.current.value,
+        classid: classid
+      }),
+    })
+    
+    const { activityId, subjectId, title }= await response.json();
+    setQuizList([...quizList, {activityId, subjectId, title}]);
+    setOpenModal(false);
+    navigate(`/teacher/class/${subjectId}/quiz/${activityId}`);
 
-   const { activityId, subjectId } = await response.json();
-   navigate(`/teacher/class/${subjectId}/quiz/${activityId}`);
+  } catch {
+    console.log("error")
+  }
  }
 
   return (
@@ -68,7 +75,7 @@ async function onClickAddQuiz(){
                </div>
           </Sidebar.Item>
           <div className='w-full'>
-               <Accordion collapseAll>
+               <Accordion>
                <Accordion.Panel>
                <Accordion.Title style={{height:'16px'}}>
                   <div className='flex'>
@@ -79,15 +86,15 @@ async function onClickAddQuiz(){
                   <Button onClick={()=> setOpenModal(true)} size="xs" className='h-8 w-full'> 
                      ADD QUIZ
                   </Button>
-                     <ul className="list-disc pl-5 my-0 text-gray-500 dark:text-gray-400">
-                           {quizList && quizList.map((quiz)=>(
-                                 <li>
-                                 <Link key={quiz.title} className="text-cyan-600 hover:underline dark:text-cyan-500"
-                                     to={`/teacher/class/${quiz.subjectId}/quiz/${quiz.activityId}`}>{quiz.title}
-                                 </Link>
-                              </li>
+                  
+                      {quizList && quizList.map((quiz)=>(
+                        <div>
+                          <Link key={quiz.activityId} className="text-cyan-600 hover:underline pl-4 dark:text-cyan-500"
+                                to={`/teacher/class/${quiz.subjectId}/quiz/${quiz.activityId}`}>{quiz.title}
+                            </Link>
+                        </div>
+                            
                            ))}
-                     </ul>
                </Accordion.Content>
                </Accordion.Panel>
                </Accordion>

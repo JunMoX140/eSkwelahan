@@ -46,23 +46,11 @@ const router = createBrowserRouter([
     element: <HomeStudent />,
     errorElement: <Errorpage />,
   },
-  // {
-  //   path: "/student/class/:classid",
-  //   element:  <SClass />,
-  //   errorElement: <Errorpage/>,
-  //   children: [
-      
-  //     {
-  //       path: "/teacher/class/:classid/dashboard",
-  //       element:  <DashboardTeacher />,
-  //     },
-  //     {
-  //       path: "/teacher/class/:classid/quiz/:quizid",
-  //       element:  <TeacherQuiz />,
-  //     },
-      
-  //   ]
-  // },
+  {
+    path: "/student/class/:classid",
+    element:  <SClass />,
+    errorElement: <Errorpage/>,
+  },
   {
     path: "/teacher",
     element: <HomeTeacher />,

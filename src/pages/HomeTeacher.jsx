@@ -41,11 +41,19 @@ export const loader = async () => {
   const [teacherClass, setTeacherClass] = useState([]);
   const [openModal, setOpenModal]= useState();
 
-  const subjectName= useRef();
-  const subjectCode= useRef();
-  const description= useRef();
-  const schedule= useRef();
+  const subjectNameRef= useRef();
+  const codeRef= useRef();
+  const descriptionRef= useRef();
+  const scheduleRef= useRef();
   const teachedId= JSON.parse(localStorage.getItem("authenticatedUser")).id; 
+
+  useEffect(() => {
+    async function loadTClass() {
+      const data = await loader();
+      setTeacherClass(data.teacherClass);
+    }
+    loadTClass();
+  }, []);
 
   async function onSubmit(){
     try{
@@ -56,28 +64,27 @@ export const loader = async () => {
         },
         body: JSON.stringify({
           teacherId : Number(teachedId),
-          subjectName : subjectName.current.value,
-          description : description.current.value,
-          subjectCode : subjectCode.current.value,
-          schedule : schedule.current.value,
+          subjectName : subjectNameRef.current.value,
+          description : descriptionRef.current.value,
+          code : codeRef.current.value,
+          schedule : scheduleRef.current.value,
         }),
       })
+      const newdata = await response.json();
+      setTeacherClass((teacherClass)=> teacherClass.concat(newdata));
       setOpenModal(false);
-
-      return redirect(`/teacher`);
     }
     catch{}
-     
   }
 
-  useEffect(() => {
-    async function loadTClass() {
-      const data = await loader();
-      setTeacherClass(data.teacherClass);
-    }
-    loadTClass();
-  }, []);
-
+  function resetFields(){
+    subjectNameRef.current.value="";
+    descriptionRef.current.value="";
+    codeRef.current.value="";
+    scheduleRef.current.value="";
+    setOpenModal(false);
+  }
+  
   return (
     <>
     <div className='w-full h-16'>
@@ -98,7 +105,10 @@ export const loader = async () => {
             Code
           </Table.HeadCell>
           <Table.HeadCell>
-            Enrolled
+            Schedule
+          </Table.HeadCell>
+          <Table.HeadCell>
+            Voucher
           </Table.HeadCell>
           <Table.HeadCell>
             <span className="sr-only">
@@ -108,9 +118,9 @@ export const loader = async () => {
         </Table.Head>
         <Table.Body className="divide-y">
         {teacherClass && teacherClass.map((tclass) => (
-          <Table.Row key={tclass.subject_id} className="bg-lm-bg p-0 dark:border-gray-700 dark:bg-gray-800">
+          <Table.Row key={tclass.subjectId} className="bg-lm-bg p-0 dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell>
-              {tclass.subject_name}
+              {tclass.subjectName}
             </Table.Cell >
             <Table.Cell>
               {tclass.description}
@@ -119,11 +129,14 @@ export const loader = async () => {
               {tclass.code}
             </Table.Cell>
             <Table.Cell>
-              {tclass.enrolled}
+              {tclass.schedule}
+            </Table.Cell>
+            <Table.Cell>
+              <span id="voucher">{tclass.voucher}</span>
             </Table.Cell>
             <Table.Cell>
             <a className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                href={`teacher/class/${tclass.subject_id}/dashboard`}>
+                href={`teacher/class/${tclass.subjectId}/dashboard`}>
                 View Class
               </a>
             </Table.Cell>
@@ -133,28 +146,28 @@ export const loader = async () => {
     </Table>
     </div>
       </div>
-      <Modal show={openModal == 'default'} size="sm" onClose={() => setOpenModal(undefined)}>
+      <Modal show={openModal == 'default'} size="sm" onClose={resetFields}>
         <Modal.Header>Add Class</Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form id='modalSubject'>
             <div className='mb-2'>
               <Label>Subject Name </Label>
-              <TextInput name="subjectName" ref={subjectName} required></TextInput>
+              <TextInput type='text' name="subjectName" ref={subjectNameRef} required/>
             </div>
             <div className='mb-2'>
               <Label>Description </Label>
-              <TextInput name="description" ref={description} required></TextInput>
+              <TextInput type='text' name="description" ref={descriptionRef} required/>
             </div>
             <div className='mb-2'>
               <Label>Code </Label>
-              <TextInput name="subjectCode" ref={subjectCode} required></TextInput>
+              <TextInput type='text' name="subjectCode" ref={codeRef} required/>
             </div>
             <div className='mb-2'>
               <Label>Schedule </Label>
-              <TextInput name="schedule" ref={schedule} placeholder='ex. 5:00-9:00 TTH'/>
+              <TextInput type='text' name="schedule" ref={scheduleRef} placeholder='ex. 5:00-9:00 TTH'/>
             </div>
             <div className='flex py-2'>
-              <Button type="submit" onClick={onSubmit} className="mr-2">Create</Button>
+              <Button onClick={onSubmit} className="mr-2">Create</Button>
               <Button color="gray" onClick={() => setOpenModal(undefined)}>Cancel</Button>
             </div>
           </Form>
@@ -163,6 +176,5 @@ export const loader = async () => {
     </>
   )
 }
-
 export default HomeTeacher
 

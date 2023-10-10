@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import todosRouter from "./routes/todo.js";
 import teacherRouter from "./routes/teacher.js"
+import studentRouter from "./routes/student.js"
 import authRouter from "./routes/auth.js";
 import authenticated from "./middlewares/authenticated.js";
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 
+app.use("/api/student",studentRouter);
 app.use(authenticated);
 app.use("/api/todos", todosRouter);
 app.use("/api/teacher",teacherRouter);

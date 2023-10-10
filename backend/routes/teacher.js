@@ -8,27 +8,27 @@ const teacherRouter = express.Router();
 const TodoSchema = z.object({
   subjectName : z.string(),
   description : z.string(),
-  subjectCode : z.string(),
+  code : z.string(),
   schedule: z.string(),
   teacherId: z.number()
 });
 
 teacherRouter.get("/:id", async (req, res) => {
+    
     const { id } = req.params;
-    const tclass = await sql`SELECT S.subject_id, S.subject_name, S.description, S.code, 
-                                    COUNT(SS.user_id) as enrolled FROM subject as S LEFT JOIN 
-                                    subjects_students as SS ON S.subject_id=SS.subject_id 
-                                    WHERE S.teacher_id=${Number(id)} GROUP BY S.subject_id;`;
+    const tclass = await sql`SELECT * FROM subject where teacher_id=${Number(id)};`;
 
                                     if (tclass) {
-                                      res.status(200).send(tclass);
+                                      res.status(200).send(camelcaseKeys(tclass));
                                     } else {
                                       res.status(404).send("subjects not found");
                                     }
   });
 
   teacherRouter.post("/", async (req, res) => {
+
     const newClass = req.body;
+    const voucher = Math.floor(Math.random() * (9999999 - 1000000 + 1) ) + 1000000;
     const parsedResult = TodoSchema.safeParse(newClass);
 
     if (!parsedResult.success) {
@@ -41,8 +41,8 @@ teacherRouter.get("/:id", async (req, res) => {
     }
 
     const [createdClass] =
-    await sql`INSERT INTO subject (subject_name, code, description,schedule,teacher_id) 
-              VALUES (${newClass.subjectName}, ${newClass.subjectCode},${newClass.description},${newClass.schedule},${newClass.teacherId}) RETURNING *`;
+    await sql`INSERT INTO subject (subject_name, code, description,schedule,teacher_id, voucher) 
+              VALUES (${newClass.subjectName}, ${newClass.code},${newClass.description},${newClass.schedule},${newClass.teacherId},${voucher}) RETURNING *`;
 
     res.status(201).send(camelcaseKeys(createdClass));
   });
@@ -99,7 +99,7 @@ teacherRouter.get("/:id", async (req, res) => {
     const [createdQuiz] =
     await sql `INSERT INTO activity_items (activity_id, quiz_type, activity_content) VALUES (${Number(quizId)}, ${Number(quizType)},${content}) RETURNING *;`;
 
-    if(createdQuiz){res.status(201).send(camelcaseKeys(createdQuiz)).json();}
+    if(createdQuiz){res.status(201).send(camelcaseKeys(createdQuiz));}
     else{res.status(404).send("something went wrong");}
     
   });
@@ -107,9 +107,8 @@ teacherRouter.get("/:id", async (req, res) => {
   teacherRouter.get("/class/quiz/details/:quizId", async (req, res) => {
     const { quizId } = req.params;
 
-    console.log(quizId)
     const details =
-    await sql `SELECT ac.activity_id, aci.activity_item_id, aci.activity_content
+    await sql `SELECT ac.activity_id, aci.activity_item_id, aci.activity_content,aci.quiz_type
                   FROM activity as ac left join activity_items as aci ON 
                   ac.activity_id=aci.activity_id WHERE ac.activity_id=${Number(quizId)}`;
 
@@ -117,10 +116,8 @@ teacherRouter.get("/:id", async (req, res) => {
 
     const quizDetails= {
       details: quiz,
-      content: details
+      content: camelcaseKeys(details)
     }
-
-    console.log(quizDetails);
     if(quizDetails){res.status(201).send(camelcaseKeys(quizDetails));}
     else{res.status(404).send("something went wrong");}
     

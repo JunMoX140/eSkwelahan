@@ -39,7 +39,7 @@ POST http://localhost:8081/api/teacher
 Content-Type: application/json
 
 {
-        "teacherId" : 1,
+        "teacherId" : 39,
         "subjectName" : "Programming",
         "description" : "Web Development",
         "subjectCode" : "PROG123",
@@ -59,3 +59,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8081/api/teacher/class/quiz/15/details
+
+###
+POST http://localhost:8081/api/student
+Content-Type: application/json
+
+{
+        "voucher" :2243794,
+        "subjectId" : 85,
+        "studentId" : 26
+
+}
+
+###
+GET http://localhost:8081/api/student/26

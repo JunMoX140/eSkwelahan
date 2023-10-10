@@ -29,7 +29,7 @@ async function onSignupClick(){
   }
 
   try{
-    await fetch("api/auth/sign-up", {
+    const response =await fetch("api/auth/sign-up", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,21 +44,23 @@ async function onSignupClick(){
         password: passwordRef.current?.value
       }),
     });
+    console.log(response.data);
+    // const authenticatedUser = response.data;
+    // localStorage.setItem(
+    // "authenticatedUser",
+    // JSON.stringify(authenticatedUser)
+    // );
+    // const { userType } = JSON.parse(localStorage.getItem("authenticatedUser"));
 
-    const { userType } = JSON.parse(localStorage.getItem("authenticatedUser"));
+    navigate("/");
 
-    if(userType === 0){ navigate("/student"); }
-    else {navigate("/teacher");}
+    // if(userType === 0){ navigate("/student"); }
+    // else {navigate("/teacher");}
   }catch(e){
 
   }
 
-  
-
-
 }
-
-
   return (
     <>
       <div className="bg-color3 w-screen">

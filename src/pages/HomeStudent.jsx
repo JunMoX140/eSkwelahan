@@ -1,12 +1,57 @@
-import React, { useState } from 'react'
-import { Button, TextInput, Table, Modal, Label } from 'flowbite-react';
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, TextInput, Table, Modal, Label, Card } from 'flowbite-react';
 import { Form } from 'react-router-dom';
 import EschoolNavbar from '../components/EschoolNavbar';
+
+
+export const loader = async () => {
+  try{
+    const {id}= JSON.parse(localStorage.getItem("authenticatedUser"))
+    const response = await fetch(`api/student/${id}`);
+    const studentClass = await response.json();
+    return { studentClass };
+  }catch(err){
+    return {};
+  }
+};
 
 function HomeStudent() {
 
     const [studentClass, setStudenClass] = useState([]);
     const [openModal, setOpenModal]= useState();
+
+    const {id}= JSON.parse(localStorage.getItem("authenticatedUser"));
+    const voucherRef=useRef();
+
+    useEffect(()=>{
+      async function loadSClass() {
+        const data = await loader();
+        setStudenClass(data.studentClass);
+      }
+      loadSClass();
+    },[])
+
+    async function onSubmit(){
+      try{
+        const response=await fetch("/api/student",{
+          method: "POST",
+          headers: {
+            "Content-type" : "application/json",
+          },
+          body: JSON.stringify({
+            studentId : Number(id),
+            voucher : Number(voucherRef.current.value)
+          }),
+        })
+        const newdata = await response.json();
+        console.log(newdata);
+        setStudenClass((studentClass)=> studentClass.concat(newdata));
+        setOpenModal(false);
+      }
+      catch{}
+    }
+
+
   return (
     <div>
          <div className='w-full h-16'>
@@ -15,7 +60,7 @@ function HomeStudent() {
         <div className='top-16 w-2/3 mx-auto'>
         <Button size="md" className='mb-2' onClick={() => setOpenModal('default')}>Enroll Class</Button>
         <div>
-        <Table striped >
+        {/* <Table striped >
         <Table.Head>
           <Table.HeadCell>
             Subject Name
@@ -37,9 +82,9 @@ function HomeStudent() {
         </Table.Head>
         <Table.Body className="divide-y">
         {studentClass && studentClass.map((sclass) => (
-          <Table.Row key={sclass.subject_id} className="bg-lm-bg p-0 dark:border-gray-700 dark:bg-gray-800">
+          <Table.Row key={sclass.subjectId} className="bg-lm-bg p-0 dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell>
-              {sclass.subject_name}
+              {sclass.subjectName}
             </Table.Cell >
             <Table.Cell>
               {sclass.description}
@@ -59,7 +104,28 @@ function HomeStudent() {
           </Table.Row>
         ))}
         </Table.Body>
-        </Table>
+        </Table> */}
+        <div className='grid grid-cols-3 gap-3'>
+          {studentClass && studentClass.map((sclass)=>(
+             <a
+                className="group items-center rounded-lg bg-gray-50 p-3 font-medium text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500"
+                href={`/student/class/${sclass.subjectId}`}
+              >
+             <div className='ml-3 font-bold'>
+               {sclass.code}
+             </div>
+             <div className='ml-5 mt-2 text-sm'>
+              {sclass.subjectName}
+             </div>
+             <div className='ml-5 mt-2 text-sm'>
+              {sclass.description}
+             </div>
+             <div className='ml-5 mt-2 text-sm'>
+              Teacher : {sclass.teacher}
+             </div>
+           </a>
+          ))}
+        </div>
         </div>
         
         </div>
@@ -70,10 +136,10 @@ function HomeStudent() {
           <Form>
             <div>
                 <Label>Voucher</Label>
-                <TextInput  />
+                <TextInput ref={voucherRef} />
             </div>
             <div className='flex py-2'>
-              <Button type="submit" className="mr-2">Enroll</Button>
+              <Button type="submit" onClick={onSubmit} className="mr-2">Enroll</Button>
               <Button color="gray" onClick={() => setOpenModal(undefined)}>Cancel</Button>
             </div>
           </Form>

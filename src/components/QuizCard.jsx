@@ -65,7 +65,6 @@ function QuizCard(props) {
         </div>
           <div className='w-28 ml-5'>
           <Card>
-              <Button size="xs">EDIT</Button>
               <Button size="xs" color="failure">DELETE</Button>
           </Card>
         </div>

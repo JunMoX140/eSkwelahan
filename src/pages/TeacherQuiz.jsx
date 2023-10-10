@@ -26,12 +26,21 @@ function TeacherQuiz() {
       const response=await fetch(`/api/teacher/class/quiz/details/${quizid}`);
       const {details, content }= await response.json();
       const {title} = details[0];
-      console.log(title);
       setQuizTitle(title);
       setQuizes(content);
+      console.log(content)
     }
     loadQuizDetails();
   }, [quizid]);
+
+  function onRemoveChoices(item){
+    const index = choicesList.indexOf(item);
+    if(index > -1){
+      choicesList.splice(index, 1);
+      setChoicesList([choicesList.toString()]);
+    }
+    console.log(choicesList.toString());
+  }
 
    async function onAddQuiz(){
     const question= questionRef.current.value;
@@ -56,9 +65,17 @@ function TeacherQuiz() {
           quizType: 1
         }),
       })
-     navigate(`/teacher/class/${classid}/quiz/${quizid}`);
+
+      const {activityContent, activityId, activityItemId, quizType} = await response.json();
+
+      console.log(response.json());
+      navigate(`/teacher/class/${classid}/quiz/${quizid}`);
+
+      
     }
-    catch{}
+    catch{
+      console.log("error");
+    }
  
   }
 
@@ -86,7 +103,7 @@ function TeacherQuiz() {
       </div>
        <div>
         { quizes && quizes.map((quiz)=>(
-          <QuizCard key={quiz} details={quiz.activity_content}/>
+          <QuizCard key={quiz.activityItemId} details={quiz.activityContent}/>
         ))
         }
        </div>
@@ -135,7 +152,7 @@ function TeacherQuiz() {
                   id="radio"
                 >
                   {
-                    choicesList && choicesList.map((choice) =>(
+                     choicesList && choicesList.map((choice) =>(
                       <div  key={choice} className="flex items-center gap-2">
                       <Radio 
                         id={choice}
@@ -147,7 +164,7 @@ function TeacherQuiz() {
                       <Label sizing="sm" className='w-20 text-xs ml-2'>
                         {choice}
                       </Label>
-                      <Button className='h-4 w-6'>
+                      <Button onClick={()=>onRemoveChoices(choice)} className='h-4 w-6'>
                         <HiX className='h-2'/>
                       </Button>
                     </div>
