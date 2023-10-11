@@ -28,7 +28,6 @@ function TeacherQuiz() {
       const {title} = details[0];
       setQuizTitle(title);
       setQuizes(content);
-      console.log(content)
     }
     loadQuizDetails();
   }, [quizid]);

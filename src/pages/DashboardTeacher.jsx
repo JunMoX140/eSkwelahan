@@ -4,67 +4,27 @@ import { Table } from 'flowbite-react';
 import { useParams } from 'react-router-dom';
 import useIsAuthenticated from '../hooks/useIsAuthenticated';
 
+
 function DashboardTeacher() {
     // useIsAuthenticated();
- const [details, setDetails] = useState({});
- const { id } = useParams();
+ const [studentsEnrolled, setStudentsEnrolled] = useState([]);
+ const { classid } = useParams();
+
+ useEffect(()=>{
+    async function loadClassDetails(){
+        const responseDatails = await fetch(`/api/teacher/class/${classid}/students`);
+        // const studentDetails = await responseDatails.json();
+        setStudentsEnrolled(responseDatails.json());
+        console.log(studentsEnrolled);
+        
+     }
+     loadClassDetails();
+
+     
+ },[]);
 
   return (
     <>
-        {/* <div className='grid grid-cols-3'>
-            <div className='m-2'>
-                    <Card
-                        className="max-w-sm"
-                        href="#"
-                        >
-                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <p>
-                                Quiz
-                            </p>
-                        </h5>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            <p>
-                                5
-                            </p>
-                        </p>
-                    </Card>
-                </div>
-                <div className='m-2 '>
-                    <Card
-                        className="max-w-sm"
-                        href="#"
-                        >
-                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <p>
-                                Assignment
-                            </p>
-                        </h5>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            <p>
-                            10
-                            </p>
-                        </p>
-                    </Card>
-                </div>
-                
-                <div className='m-2'>
-                    <Card
-                        className="max-w-sm"
-                        href="#"
-                        >
-                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <p>
-                                Activities
-                            </p>
-                        </h5>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            <p>
-                                8
-                            </p>
-                        </p>
-                    </Card>
-                </div>
-        </div> */}
         <div>
             <Table striped >
                 <Table.Head>
@@ -75,61 +35,31 @@ function DashboardTeacher() {
                     <Table.HeadCell>
                     Action
                     </Table.HeadCell>
-                    
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell>
-                        Cris Vincent Ferrer
-                    </Table.Cell>
-                    <Table.Cell>
-                        <a
-                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                        href="/teacher/class"
-                        >
-                        <p>
-                        View Subject
-                        </p>
-                        </a>
-                    </Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell>
-                        <p>
-                        Mark Omega
-                        </p>
-                    </Table.Cell>
-                    <Table.Cell>
-                        <a
-                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                        href="/teacher/class"
-                        >
-                        <p>
-                        View Subject
-                        </p>
-                        </a>
-                    </Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell>
-                        <p>
-                        Joevy Blanco
-                        </p>
-                    </Table.Cell>
-                    <Table.Cell>
-                        <a
-                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                        href="/teacher/class"
-                        >
-                        <p>
-                        View Subject
-                        </p>
-                        </a>
-                    </Table.Cell>
-                    </Table.Row>
+                    {studentsEnrolled.length === 0 ? (
+                            "Loading"
+                        ) : ("test"
                     
+                            // students.map((student)=>(
+                            //     <Table.Row key={student.studentId} className="bg-lm-bg dark:border-gray-700 dark:bg-gray-800">
+                            //     <Table.Cell>
+                            //         {student.student}
+                            //     </Table.Cell>
+                            //     <Table.Cell>
+                            //         <a
+                            //         className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                            //         href={`/teacher/class/student/${student.studentId}`}
+                            //         >
+                            //         <p>
+                            //         View Subject
+                            //         </p>
+                            //         </a>
+                            //     </Table.Cell>
+                            //     </Table.Row>
+                            // ))
+                        )
+                    }
                 </Table.Body>
             </Table>
         </div>

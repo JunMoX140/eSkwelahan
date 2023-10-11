@@ -32,7 +32,7 @@ useEffect(()=>{
          loadClassDetails();
       }
    } catch {}
-},[classid]);
+},[]);
 
 async function onClickAddQuiz(){
   try {
@@ -62,8 +62,8 @@ async function onClickAddQuiz(){
     <>
     <div className=''>
         <EschoolNavbar />
-    </div>
-    <div className='flex'>
+      </div>
+      <div className='flex'>
 
     <div className='flex h-screen'>
     <Sidebar aria-label="Eschool Sidebar">
@@ -131,7 +131,7 @@ async function onClickAddQuiz(){
         </Modal.Footer>
       </Modal>
     </div>
-</div>
+    </div>
     </>
   )
 }

@@ -61,6 +61,9 @@ Content-Type: application/json
 GET http://localhost:8081/api/teacher/class/quiz/15/details
 
 ###
+GET http://localhost:8081/api/teacher/class/85/students
+
+###
 POST http://localhost:8081/api/student
 Content-Type: application/json
 

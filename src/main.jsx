@@ -13,6 +13,7 @@ import TeacherQuiz from "./pages/TeacherQuiz.jsx";
 import DashboardTeacher from "./pages/DashboardTeacher";
 import LoginPage from "./pages/LoginPage";
 import HomeStudent from "./pages/HomeStudent";
+import StudentClass from "./pages/StudentClass";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/student/class/:classid",
-    element:  <SClass />,
+    element:  <StudentClass />,
     errorElement: <Errorpage/>,
   },
   {

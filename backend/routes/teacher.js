@@ -104,6 +104,18 @@ teacherRouter.get("/:id", async (req, res) => {
     
   });
 
+  teacherRouter.get("/class/:classid/students", async (req, res) => {
+    const { classid } = req.params;
+
+    const [students] =
+    await sql `SELECT concat(u.lastname,', ',u.firstname) as student, ss.student_id FROM subjects_students as ss
+                  INNER JOIN users as u ON ss.student_id=u.user_id WHERE ss.subject_id=${Number(classid)}`;
+
+    if(students){res.status(201).send(camelcaseKeys(students));}
+    else{res.status(404).send("Students not found");}
+    
+  });
+
   teacherRouter.get("/class/quiz/details/:quizId", async (req, res) => {
     const { quizId } = req.params;
 

@@ -56,5 +56,27 @@ studentRouter.get("/:studentId", async(req, res)=>{
     }
 })
 
+studentRouter.get("/class/:classid/quizes", async (req, res) => {
+  const { classid } = req.params;
+  const quizes =
+  await sql`SELECT s.subject_id, ac.activity_id,
+            ac.title FROM subject as s left join activity as ac ON s.subject_id=ac.subject_id WHERE
+            s.subject_id=${Number(classid)};`;
+
+  if(quizes){res.status(201).send(camelcaseKeys(quizes))}
+  else{res.status(404).send("details not found");}
+  
+});
+
+studentRouter.get("/class/:classid/details", async (req, res) => {
+  const { classid } = req.params;
+  const [classDetails] =
+  await sql`SELECT subject_id, subject_name, schedule FROM subject WHERE subject_id=${Number(classid)};`;
+
+  if(classDetails){res.status(201).send(camelcaseKeys(classDetails)).json();}
+  else{res.status(404).send("Quizes not found");}
+  
+});
+
 
 export default studentRouter;
