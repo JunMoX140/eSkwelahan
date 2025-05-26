@@ -39,7 +39,7 @@ try {
     
     const { userType } = JSON.parse(localStorage.getItem("authenticatedUser"));
 
-    if(userType === 0){ navigate("/student"); }
+    if(userType == 1){ navigate("/student"); }
     else {navigate("/teacher");}
 
     } catch (err) {

@@ -25,7 +25,10 @@ studentRouter.post("/", async (req, res)=> {
    if (subject) {
     const [isEnrolled] = await sql `INSERT INTO subjects_students (subject_id, student_id, status)
                                     VALUES (${Number(subject.subject_id)}, ${Number(data.studentId)}, 0) RETURNING *`;
+
+    
     if(isEnrolled){
+
         const [enrolledSubject] = await sql `SELECT s.subject_id, s.subject_name, s.description, s.schedule,s.code, 
                         concat(u.firstname,' ',u.lastname) as teacher FROM subject as s LEFT JOIN users as U ON
                         s.teacher_id=u.user_id WHERE s.subject_id=${Number(subject.subject_id)}`;

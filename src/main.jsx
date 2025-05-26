@@ -14,6 +14,7 @@ import DashboardTeacher from "./pages/DashboardTeacher";
 import LoginPage from "./pages/LoginPage";
 import HomeStudent from "./pages/HomeStudent";
 import StudentClass from "./pages/StudentClass";
+import StudentQuiz from "./pages/StudentQuiz";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,12 @@ const router = createBrowserRouter([
     path: "/student/class/:classid",
     element:  <StudentClass />,
     errorElement: <Errorpage/>,
+    children: [
+      {
+        path: "/student/class/:classid/quiz/:quizid",
+        element:  <StudentQuiz />,
+      }
+    ]
   },
   {
     path: "/teacher",

@@ -26,7 +26,7 @@ function DashboardTeacher() {
   return (
     <>
         <div>
-            <Table striped >
+            {/* <Table striped >
                 <Table.Head>
                     
                     <Table.HeadCell>
@@ -61,7 +61,7 @@ function DashboardTeacher() {
                         )
                     }
                 </Table.Body>
-            </Table>
+            </Table> */}
         </div>
         
     </>

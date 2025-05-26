@@ -20,9 +20,6 @@ function StudentClass() {
              const quizesDetails = await responseQuizes.json();
              setSubjectName(subjectName);
              setQuizList(quizesDetails);
-
-             console.log(subjectName);
-             console.log(quizList)
           }
     
           loadClassDetails();
@@ -56,12 +53,20 @@ function StudentClass() {
                </Accordion.Title>
                <Accordion.Content>
                 {quizList && quizList.map((quiz)=>(
-                  <div>
-                    <Link key={quiz.activityId} className="text-cyan-600 hover:underline pl-4 dark:text-cyan-500"
-                          to={`/teacher/class/${quiz.subjectId}/quiz/${quiz.activityId}`}>{quiz.title}
+                  
+                  <div className='grid grid-cols-2 mb-2'>
+                    <div >
+                      <Link key={quiz.activityId} className="text-cyan-600 hover:underline dark:text-cyan-500"
+                          to={`/student/class/${quiz.subjectId}/quiz/${quiz.activityId}`}>{quiz.title}
                       </Link>
-                  </div>
+                    </div>
+                    <div className='flex justify-end'>
+                      <Link to={`/student/class/${quiz.subjectId}/quiz/${quiz.activityId}`}>
+                        <Button size="xs">Take Quiz</Button>
+                      </Link>
                       
+                    </div>
+                  </div>
                       ))}
                </Accordion.Content>
                </Accordion.Panel>

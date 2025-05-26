@@ -28,9 +28,10 @@ function TeacherQuiz() {
       const {title} = details[0];
       setQuizTitle(title);
       setQuizes(content);
+      console.log(content);
     }
     loadQuizDetails();
-  }, [quizid]);
+  }, []);
 
   function onRemoveChoices(item){
     const index = choicesList.indexOf(item);
@@ -65,12 +66,13 @@ function TeacherQuiz() {
         }),
       })
 
-      const {activityContent, activityId, activityItemId, quizType} = await response.json();
-
-      console.log(response.json());
-      navigate(`/teacher/class/${classid}/quiz/${quizid}`);
+      // const {activityContent, activityId, activityItemId, quizType} = await response.json();
+      const newData= await response.json();
+       setQuizes((prev)=> [...prev, newData]);
+       setOpenModal(false);
 
       
+      // navigate(`/teacher/class/${classid}/quiz/${quizid}`);
     }
     catch{
       console.log("error");
